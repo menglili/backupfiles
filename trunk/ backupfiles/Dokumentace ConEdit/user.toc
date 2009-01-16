@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Zad\'an\IeC {\'\i }}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {section}{\numberline {2}Instalace}{2}
+\contentsline {section}{\numberline {3}Pr\'ace s programem}{2}
+\contentsline {subsection}{\numberline {3.1}Na\v cten\IeC {\'\i } souboru podm\IeC {\'\i }nek}{2}
+\contentsline {subsection}{\numberline {3.2}Filtrov\'an\IeC {\'\i } podm\IeC {\'\i }nek}{2}
+\contentsline {subsection}{\numberline {3.3}Set\v r\IeC {\'\i }d\v en\IeC {\'\i } souboru podm\IeC {\'\i }nek}{2}
+\contentsline {subsection}{\numberline {3.4}P\v rid\'av\'an\IeC {\'\i } podm\IeC {\'\i }nek}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {subsection}{\numberline {3.5}Editace podm\IeC {\'\i }nek}{3}
+\contentsline {subsection}{\numberline {3.6}Maz\'an\IeC {\'\i } podm\IeC {\'\i }nek}{3}
+\contentsline {subsection}{\numberline {3.7}Odstra\v nov\'an\IeC {\'\i } p\v rebyte\v cn\'ych podm\IeC {\'\i }nek}{3}
+\contentsline {subsection}{\numberline {3.8}Aktualizace po internetu}{3}
+\contentsline {subsection}{\numberline {3.9}Ukon\v cen\IeC {\'\i } programu}{4}

@@ -1,0 +1,100 @@
+This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=pdfcslatex 2009.1.7)  7 JAN 2009 16:10
+entering extended mode
+**C:/Documents*and*Settings/Fin/Dokumenty/Versioned/Dokumentace*ConEdit/user.te
+x
+
+("C:\Documents and Settings\Fin\Dokumenty\Versioned\Dokumentace ConEdit\user.te
+x"
+LaTeX2e <2005/12/01>
+Loading CZ hyphenation patterns: Pavel Sevecek, v3, 1995
+Loading SK hyphenation patterns: Jana Chlebikova, 1992
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\article.cls"
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\size10.clo"
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.6\tex\csplain\base\czech.sty"
+Package: czech 2002/07/19 v2.4 CSTeX czech style
+)
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\inputenc.sty"
+Package: inputenc 2006/05/05 v1.1b Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\base\cp1250.def"
+File: cp1250.def 2006/05/05 v1.1b Input encoding file
+))
+("C:\Program Files\MiKTeX 2.6\tex\latex\ltxmisc\a4wide.sty"
+Package: a4wide 1994/08/30
+
+("C:\Program Files\MiKTeX 2.6\tex\latex\ntgclass\a4.sty"
+Package: a4 2004/04/15 v1.2g A4 based page layout
+)) (user.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 10.
+ [1
+
+{psfonts.map}]
+LaTeX Font Info:    Try loading font information for IL2+cmtt on input line 40.
+
+ ("C:\Program Files\MiKTeX 2.6\tex\latex\cslatex\il2cmtt.fd"
+File: il2cmtt.fd 1997/08/20 CSLaTeX font definitions
+) [2]
+[3] (user.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 7.
+)
+\tf@toc=\write3
+ [4] (user.aux) ) 
+Here is how much of TeX's memory you used:
+ 414 strings out of 95155
+ 4646 string characters out of 1183348
+ 52887 words of memory out of 1053191
+ 3725 multiletter control sequences out of 60000
+ 12635 words of font info for 33 fonts, out of 1000000 for 2000
+ 24 hyphenation exceptions out of 8191
+ 23i,6n,22p,784b,187s stack positions out of 5000i,500n,10000p,200000b,32768s
+<C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csbx10.pfb>
+<C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csbx12.pfb><C:/Program Files
+/MiKTeX 2.6/fonts/type1/public/cs/csr10.pfb><C:/Program Files/MiKTeX 2.6/fonts/
+type1/public/cs/csr12.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/cs
+r17.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csti10.pfb><C:/Progr
+am Files/MiKTeX 2.6/fonts/type1/public/cs/cstt10.pfb>
+Output written on user.pdf (4 pages, 75196 bytes).
+PDF statistics:
+ 43 PDF objects out of 300000 (max. 8388607)
+ 0 named destinations out of 300000 (max. 131072)
+ 1 words of extra memory for PDF output out of 65536 (max. 10000000)
+

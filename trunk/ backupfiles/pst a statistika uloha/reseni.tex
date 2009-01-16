@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{czech}
+\usepackage[cp1250]{inputenc}
+\usepackage{a4wide}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Zápoètová práce z pøedmìtu Pravdìpodobnost a Statistika}
+\author{Vladimír Rovenský}
+\maketitle
+
+\newpage
+
+\section{Dopolední provoz}
+\subsection{Kolik lidí jelo mezi stanicemi B a C prvním vlakem}
+Seèetl jsem poèet lidí, kteøí pøišli do stanice A bìhem prvních dvou minut provozu (mezi 6:00 a 6:02) a poèet lidí, kteøí pøišli do stanice B bìhem prvních dvou minut provozu (mezi 6:05 a 6:07).
+\begin{verbatim}
+task11FirstTrainCount <- ( length(arrivalsAAM[arrivalsAAM <= 2]) +
+ length(arrivalsBAM[arrivalsBAM <= 2]) )
+print(paste(c("Ukol 1.1 - Prvnim vlakem jelo mezi stanicemi B a C ",
+task11FirstTrainCount," lidi."),sep = " ",collapse = ""))
+\end{verbatim}
+Výsledek: 141 lidí.
+
+\subsection{Odhad støední hodnoty poètu lidí v dopoledním vlaku mezi stanicemi B a C}
+\subsubsection{Bodový odhad}
+Použil jsem pro odhad støední hodnoty výbìrový prùmìr: $\mu = \frac{\sum X_{i}}{n}$¨
+\begin{verbatim}
+task12Counts <- NULL #pocty lidi v jednotlivych dopolednich vlacich mezi B a C
+trainTime <- 2 #cas odjezdu vlaku (minuty)
+#vygenerujeme obsah task12Counts
+while(trainTime <= minutesAM)
+{
+  task12Counts <- c ( task12Counts, length(arrivalsAAM[(arrivalsAAM > trainTime - 2) &
+   (arrivalsAAM <= trainTime)]) + length(arrivalsBAM[(arrivalsBAM > trainTime - 2) &
+    (arrivalsBAM <= trainTime)]) )
+  trainTime <- trainTime + 2
+}
+
+#bodovy odhad - odhad stredni hodnoty = vyberovy prumer
+task12Mean <- mean(task12Counts) 
+\end{verbatim}
+Výsledek: $140.122222222$
+
+\subsubsection{Intervalový odhad}
+Vzhledem k výsledku úlohy 1.5 mají poèty lidí normální rozdìlení, použil jsem proto k získání konfidenèního intervalu výbìrový t-test.
+
+\begin{verbatim}
+#95% intervalovy odhad  poctu cestujicich
+t.test(task12Counts))[[4]][1]
+\end{verbatim}
+Výsledek: $( 138.419797155082 , 141.824647289363)$
+
+\subsection{Testovat hypotézu, že støední hodnota poètu cestujících je 140}
+Opìt jsem využil faktu, že poèty cestujících mají normální rozdìlení a použil jsem t-test.
+\begin{verbatim}
+#provedeme t-test, alternativa: stredni hodnota neni 140
+print(t.test(task12Counts, mu = 140))
+\end{verbatim}
+Výsledek: Hypotézu nezamítám
+
+\subsection{Nakreslit histogram s hustotou pro poèty cestujících}
+\begin{verbatim}
+hist(task12Counts, breaks = 10, main = "Úkol 1.4 - histogram",freq=FALSE)
+lines(density(task12Counts))
+\end{verbatim}
+Výsledek:
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=1.00\textwidth]{C:/Documents and Settings/Fin/Dokumenty/pst a statistika uloha/hist1.png}
+	\label{fig:hist1}
+\end{figure}
+
+\subsection{Zjistit o jaké rozdìlení se jedná}
+Poèty cestujících v dopoledních vlacích mezi stanicemi B a C mají normální rozdìlení, využil jsem toho, že pro poèet pozorování -> $\infty$ histogram konverguje k hustotì pøíslušného rozdìlení.
+\subsection{Otestovat, zda se jedná o normální rozdìlení}
+Použil jsem Shapirùv test.
+Výsledek: hypotézu nezamítám.
+
+
+
+\end{document}
