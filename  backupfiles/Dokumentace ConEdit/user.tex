@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{czech}
+\usepackage[cp1250]{inputenc}
+\usepackage{a4wide}
+
+\begin{document}
+
+\title{Uživatelská dokumentace k~zápoètovému programu z~pøedmìtu Java}
+\author{Vladimír Rovenský}
+\maketitle
+
+\newpage
+
+\begin{list}{}{}
+	\item \textbf{Hardwarové požadavky: } Žádné speciální 
+	\item \textbf{Softwarové požadavky: } Nainstalovaná Java Virtual Machine v6 
+\end{list}
+
+\section{Zadání}
+\paragraph{}
+Vytvoøit podpùrnou aplikaci pro projekt \textit{Sense}, jehož úkolem je rozhodnout, zda je èeská vìta smysluplná èi nikoli. K tomuto úèelu má definován soubor podmínek pro jednotlivé morfologické kategorie slov ve vstupní vìtì. Na základì tìchto podmínek je vìta dále analyzována (podobnosti viz dokumentace projektu \textit{Sense}).
+\paragraph{}
+Protože tento soubor podmínek pøímo urèuje zpùsob, jakým bude analýza probíhat, je žádoucí poskytnout uživateli jeho editaci. Proto jsou veškeré podmínky uložené v textovém souboru ve speciálním formátu a mohou být uživatelem libovolnì upravovány. K tomu je ale zapotøebí nastudovat a dodržovat pøesný formát tohoto souboru, což mùže pro bìžného uživatele problém, který by mìla øešit právì dokumentovaná aplikace. 
+\paragraph{}
+Jedná se o utilitu s pøehledným grafickým rozhranním, která umožní uživateli editovat soubor podmínek bez jakékoli znalosti jeho vnitøního formátu. Mezi funkce programu patøí pøehledné zobrazení všech uložených podmínek, jejich editace a mazání, pøidávání úplnì nových podmínek, tøídìní souboru podmínek pro vìtší pøehlednost, vyhledávání duplicitních podmínek a aktualizace souboru podmínek po internetu.
+
+\section{Instalace}
+Staèí rozbalit instalaèní balíèek do libovolného umístìní a spustit soubor \textit{ConEdit.jar}. Aplikace byla testována na OS Windows a Linux, nicménì mìla by fungovat na vìech OS, na kterých je distribuována Java Virtual Machine.
+
+\section{Práce s programem}
+Následuje popis všech dosud implementovaných funkcí programu. Pro spuštìní staèí poklikat na soubor \textit{ConEdit.jar}
+
+\subsection{Naètení souboru podmínek}
+Nejprve je tøeba naèíst soubor s podmínkami, se kterým si pøejete pracovat. Zvolte v hlavním menu aplikace \textit{file} položku \textit{open} a ve standardním dialogu zvolte pøíslušný soubor. Ten bude následnì naèten a hlavièky podmínek budou zobrazeny v hlavním seznamu ve støedu pracovní oblasti. Pro zobrazení detailu nìkteré podmínky staèí kliknout na její hlavièku.
+
+\subsection{Filtrování podmínek}
+Pokud chcete zobrazit jen podmínky urèitého typu, slouží k tomu zaškrtávací tlaèítka v levé horní èásti pracovní oblasti. Zaškrtnìte požadované typy podmínek a ostatní podmínky nebudou zobrazeny. Viditelné podmínky jsou vždy setøídìné podle dvojice slovních druhù, které se týkají (podstatná jména na prvním místì, citoslovce na posledním).
+
+\subsection{Setøídìní souboru podmínek}
+Pokud chcete, aby soubor s podmínkami byl setøídìn stejnì jako seznam viditelný v aplikaci, zaškrtnìte tlaèítko \texttt{sort on exit}. Pokud soubor pøi ukonèování práce uložíte, dojde k setøídìní souboru podmínek.
+
+\subsection{Pøidávání podmínek}
+\paragraph{}
+Pro pøidání nové podmínky do souboru slouží tlaèítko \texttt{Add condition}. Po jeho stisknutí se objeví dialog, ve kterém je možné zvolit typ novì definované podmínky a následnì všechny klauzule, které v tomto typu podmínky mohou být.
+\paragraph{}
+U základní podmínky (\texttt{BasicCondition}) je tøeba nejprve vybrat slovní druhy, kterých se týká. Dále je v panelu \texttt{Definition} možno definovat jednotlivé øádky podmínky. Je možné se odkazovat na všechny morfologické kategorie (\texttt{tag position \#}), na lemmata nebo konkrétní tvary slov, na jejich vzdálenost ve vìtì, slovosled, nebo stanovit \textit{RR skupinu} pro tuto podmínku. Podrobnìjší popis všech klauzulí je v uživatelské dokumentaci projektu \textit{Sense}. Všechny vytvoøené klauzule jsou zobrazovány v seznamu v pravé èásti panelu \texttt{Definition}, odkud je lze po vybrání jedné z nich odstraòovat tlaèítkem \texttt{Remove selected} nebo je dále upravovat.
+\paragraph{}
+Definice podmínky pro spojovací výraz (\texttt{Conjunction condition}) je stejná jako pro základní podmínku, navíc lze v definici použít klauzuli \texttt{Conjunction lemma}, kterou se lze odkázat na lemma spojovacího výrazu.
+\paragraph{}
+Nejjednodušší podmínkou je podmínka pro maximální poèet daných vztahù (\texttt{Max relations condition}). Staèí zadat dvojici slovních druhù a èíslo udávající maximální poèet vztahù, který mùže ve vìtì nastat mezi slovy s tìmito slovními druhy.
+\paragraph{}
+Ke každé podmínce je také možné udat komentáø. Je vhodné zde uvést pøíklad slovního spojení, kterého se definovaná podmínka týká a její krátký popis.
+\paragraph{}
+Nakonec je možné podmínku buï uložit (\texttt{Save condition}), resetovat panel a napsat podmínku znova od píky (\texttt{Reset}), nebo zrušit celý proces a vrátit se k hlavní aplikaci beze zmìn (\texttt{Storno}).
+
+\subsection{Editace podmínek}
+Pokud chcete nìkterou z podmínek upravit, staèí ji vybrat v hlavním seznamu a kliknout na tlaèítko \texttt{Edit selected}. Zobrazí se podobný panel jako pro pøidávání podmínek, ve kterém budou uloženy hodnoty vybrané podmínky. Tyto hodnoty je možné libovolnì upravovat, stejnì jako pøi vytváøení nové podmínky.
+
+\subsection{Mazání podmínek}
+Pro smazání podmínky ze souboru podmínek ji staèí vybrat v hlavním seznamu a kliknout na tlaèítko \texttt{Delete selected}.
+
+\subsection{Odstraòování pøebyteèných podmínek}
+Jakmile se v souboru vyskytne vìtší množství podmínek je urèitá pravdìpodobnost, že nìkteré budou redundantní. Podmínka A je redundantní, pokud nìkde v souboru existuje podmínka B, která je ménì pøísná, tj. její požadavky na slova jsou podmnožnou požadavkù podmínky A. Je zøejmé, že vždy když uspìje podmínka A, uspìje i B (ne naopak) a podmínka A je proto redundantní. Pokud si pøejete vyhledat a odstranit takovéto redundantní podmínky, kliknìte na tlaèítko \texttt{Clear redundant}.
+
+\subsection{Aktualizace po internetu}
+Aktuání verze souboru je rovnìž k dispozici online,z programu je možné tuto verzi stáhnout - k tomu slouží v menu \texttt{help} položky \texttt{Online update} a \texttt{online revert}. První z nich vybere z online verze souboru pouze ty podmínky, které v aktuálnì otevøeném souboru nejsou a dosvadní obsah otevøeného souboru nezmìní. Druhá kompletnì nahradí otevøený soubor podmínek online verzí.
+
+\subsection{Ukonèení programu}
+Po ukonèení práce s aplikací je možné použít buï tlaèítko \texttt{Save and quit}, které zavøe aplikaci a uloží všechny provedené zmìny do souboru podmínek, nebo tlaèítko \texttt{Quit without saving}, které zavøe aplikaci a soubor podmínek nechá beze zmìn. Toto se týká všech zmìn provedených bìhem práce s programem, pokud pøi ukonèování programu neuložíte provedené zmìny, budou nenávratnì ztraceny. Bìhem programu je možné vynutit uložení zmìn do souboru tlaèítkem \texttt{Save}.
+
+\tableofcontents
+
+\end{document}
