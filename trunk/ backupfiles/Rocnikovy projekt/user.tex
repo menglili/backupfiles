@@ -1,0 +1,391 @@
+\documentclass{article}
+\usepackage{czech}
+\usepackage[cp1250]{inputenc}
+\usepackage{a4wide}
+\usepackage{graphicx}
+
+
+\begin{document}
+
+\title{Uivatelská dokumentace k~roèníkovému projektu}
+\author{Vladimír Rovenskı}
+\maketitle
+\thispagestyle{empty}
+
+\vspace{15cm}
+\begin{center}
+\begin{tabular}{l l}
+Vedoucí projektu: & Barbora Vidová-Hladká \\
+Téma: & Rozeznání smysluplnosti èeské vìty \\
+Platformy: & Unix, Windows \\
+Programovací jazyk: & C++ (IDE MS Visual Studio) \\
+HW poadavky: & ádné speciální \\
+SW poadavky: & OS Unix / Linux / Windows, tool\_chain  \\
+\end{tabular}
+\end{center}
+\newpage
+
+\section{Úvod}
+
+\subsection{Anotace}
+Cílem roèníkového projektu je implementace automatické procedury, která v reálném èase rozezná, je-li shluk textovıch øetìzcù èeskou vìtou. Automatická procedura bude vyuívat vıstupy externích automatickıch modulù, které se tıkají tvarosloví (slovní druhy a jejich kategorie - rod, èíslo, pád, osoba aj.). Vyøešení tohoto úkolu je vyuitelné ve fulltextovém vyhledávání, kde je mj. dùleité rozeznat shluk klíèovıch slov urèenıch pro zmatení vyhledávaèe od vìty urèené uivateli.
+
+\subsection{Pojem smusluplnost}
+Je vhodné si uvìdomit, e pojem smysluplnost vìty mùe mít pro rùzné lidi znaènì odlišné interpretace. Existuje spousta kritérií, podle kterıch pøirozenì hodnotíme, zda nám ta která vìta dává smysl. U vìtšiny vìt se lze shodnout na tom, e jsou buï zjevnì smysluplné (``Dìti chodí do školy.''), nebo zjevnì nesmyslné (``Ráno zcela napøíè našel i.''). Mùeme ale také nalézt pøíklady vìt, na jejich smysluplnost mají rùzní lidé rùzné názory:
+\vspace{3 mm}
+
+\begin{tabular}{p{0.4\textwidth} p{0.5\textwidth}}
+Tatínek šli do školy. & Mùe se jednat o pøeklep, nebo o odpovìï na otázku "Kdo co kam nese?" \\
+Druhá svìtová válka se odehrála pøed rokem. & Chybí ètyøèíslí udávající rok, nicménì z hlediska morfologie (nebo èlovìka neznalého historie) se jedná o správnì zkonstruovanou vìtu. \\
+Chléb, mléko, máslo, sır. & Pokud øetìzec neobsahuje sloveso, prohlásíme jej za smysluplnou vìtu? \\
+\end{tabular}
+
+\vspace{3 mm}
+S ohledem na tyto skuteènosti je tøeba pøi øešení podobného úkolu jasnì definovat kritéria, podle kterıch hodnotíme smysluplnost. Souèástí práce je i tato definice.
+
+\subsection{Struènı popis programu}
+Jedná se o nástroj ke zjišování smysluplnosti èeské vìty na základì tvaroslovnıch (morfologickıch) informací.  Vstupem programu je øetìzec èeskıch slov zpracovanı nástrojem tool\_chain, kterı poskytne potøebné tvaroslovné informace. Vıstupem programu je informace o tom, je-li èi není vstupní øetìzec smysluplnou èeskou vìtou.
+Vìtou mùe bıt i otázka.
+
+\subsection{Instalace programu pod OS Windows}
+Staèí do libovolného adresáøe rozbalit verzi aplikace pro OS Windows, tj. adresáø  \verb|release\windows| z instalaèního balíèku \textit{Sense}. 
+
+\subsection{instalace programu pod OS Unix}
+Nejprve do libovolného adresáøe rozbalte soubory v adresáøi source/sense z instalaèního balíèku \textit{Sense}.  Dále je tøeba standardním zpùsobem tyto zdrojové kódy zkompilovat  (napøíklad spuštìním pøíkazu \verb|"g++ `ls ./*.cpp` -w -o sense"| v adresáøi, kam byly rozbaleny).
+
+\subsection{Spuštìní programu}
+Samotné spuštìní je stejné pod Windows i Unixem. V adresáøi, kam byl program nainstalován, najdete dva soubory: \textit{conditions.txt} a \textit{sense.exe} (respektive \textit{sense} v OS Unix / Linux). V prvním jsou uloené vztahy, podle kterıch program vìtu analyzuje (jejich formát bude popsán dále). Pøi dodrení tohoto formátu je moné tento soubor libovolnì rozšiøovat a upravovat. 
+
+\newpage
+Druhı z nich slouí ke spuštìní aplikace a pøijímá tyto volby: \vspace{5 mm} \\
+\begin{tabular}{p{0.15\textwidth} p{0.75\textwidth}}
+\textit{-i soubor} & Specifikace souboru se vstupem, jím je vìta zpracovaná programem tool\_chain ve formátu CSTS. Program oèekává na vstupu vìtu prošlou tokenizací, morfologickou analızou a tagováním nástroje tool\_chain. Vıchozí hodnotou je standardní vstup. \\ \\
+\textit{-o soubor} & Specifikace souboru, do nìj má bıt ukládán vıstup programu. Vıchozí hodnotou je standardní vıstup. \\ \\
+\textit{-h} & Zobrazí krátkou nápovìdu. \\ \\
+\textit{-v} & Zapnutí podrobného vıstupu, program vypíše nalezené vztahy (viz dále). \\ \\
+\textit{-c \#[\%]} & Zapnutí vypisování kolizí. Kolizí se rozumí takovı vztah mezi slovními jednotkami, kterı témìø vyhovìl nìkteré z definovanıch podmínek, avšak na nìkteré èásti selhal. Parametr je následován èíslem (\#), které øíká, kolik klauzulí podmínky musí bıt splnìno, aby byly ostatní - nesplnìné - øádky vypsány coby kolize. Za èíslem lze napsat symbol '\%', potom bude zadaná hodnota chápána jako procentuální podíl splnìnıch klauzulí na celkovém poètu klauzulí.\\ \\
+\textit{-g \#[\%]} & Èasto se stává, e program tool\_chain nerozezná nìkteré ze slov na vstupu, napøíklad kvùli pøeklepu, pravopisné chybì nebo prostì proto, e dané slovo nemá v databázi. Takovım slovùm pøiøadí na místì slovního druhu symbol 'X' a neposkytuje prakticky ádnou další morfologickou informaci, následkem èeho tato slova vìtšinou nevyhoví ádné z definovanıch podmínek a zpùsobí, e je vìta vyhodnocena jako nesmyslná. Toto chování programu je mnohdy pøíliš pøísné, proto lze za pomoci volby \textit{-g} urèit, kolik nerozpoznanıch slovních jednotek mùe bıt z vìty vypuštìno. Pokud je volba pouita s parametrem \#, bude z vìty ještì pøed vlastní analızou odstranìno \# nerozpoznanıch slovních jednotek. Po pøidání symbolu '\%' bude zadaná hodnota chápána jako procentuální podíl nerozpoznanıch slovních jednotek na celkové délce vìty. Odstraòování probíhá vdy od zaèátku vìty (zleva). \\ \\
+\textit{-co soubor} & Urèení souboru, do kterého mají bıt ukládány nalezené kolize (viz volba \textit{-c}. Vıchozí hodnotou je standardní vıstup. \\
+\end{tabular}
+
+\subsection{Soubor s nastavením}
+Po prvním spuštìní programu je automaticky vygenerován soubor \textit{sense.ini}, kterı obsahuje veškerá vıše uvedená nastavení programu. Program vdy nejprve naète nastavení z tohoto souboru, a poté nastavení z pøíkazové øádky take není tøeba èasto pouívané volby vdy pøedávat v parametrech programu.
+\paragraph{}
+Pokud je pro dané nastavení hodnota jak v souboru, tak na pøíkazové øádce, pouije se hodnota z pøíkazové øádky.
+
+\subsection{Pouití nástroje tool\_chain}
+Jeliko program k pouití vyaduje na vstupu text analyzovanı nástrojem tool\_chain, zde je krátkı popis jeho pouití. Podrobnìjší informace o nástroji tool\_chain lze nalézt na adrese \\
+\small{\verb|http://ufal.mff.cuni.cz/rest/CAC/doc-cac20/cac-guide/cz/html/ch3.html#nastroje-zprac|}.
+\normalsize
+\paragraph{}
+Jedná se o nástroj zajišující tvaroslovnou analızu èeskıch textù, pro potøeby
+dokumentovaného programu jsou dùleité pouze sluby tokenizace, morfologická analıza a
+tagování, ze kterıch analıza smysluplnosti vychází. Pro analızu vstupní vìty nástrojem tool\_chain je tøeba spustit jej následovnì: \verb| tool_chain -tAT -i soubor_s_vìtou -o soubor_s_vıstupem | \\
+Volba \textit{–tAT} zajistí, e se provedou všechny tøi vıše uvedené sluby, soubor\_s\_vìtou je textovı soubor (prostı text) obsahující vstupní vìtu, soubor\_s\_vıstupem je jméno souboru, kam má bıt uloen vısledek zpracování.
+\paragraph{}
+Vıstupním formátem bude v tomto pøípadì formát CSTS. Jedná se o znaèkovı formát na bázi SGML. Jeho podrobnı popis je k nahlédnutí na adrese \\ \verb|http://ufal.mff.cuni.cz/pdt2.0/doc/data-formats/csts/html/DTD-HOME.html|. \\
+Program \textit{sense} oèekává na vstupu soubor právì v tomto formátu.
+
+\section{Popis algoritmu}
+\subsection{Naètení vstupu}
+Na vstupu máme nástrojem tool\_chain analyzovanou vìtu ve formátu CSTS. Takto mùe
+vypadat pøíklad vstupu programu po analıze nástrojem tool\_chain (tokenizace,
+morfologická analıza, tagování, tedy volba \textit{-tAT}).
+Vstupní vìtou byl øetìzec ``Pøed domem stojí auto a v domì štìká pes.''
+\begin{verbatim}
+<csts lang=cs> 
+<doc file="in" id=1> 
+<a> 
+<mod>? 
+<txtype>? 
+<genre>? 
+<med>? 
+<temp>? 
+<authname>? 
+<opus>in 
+<id>001 
+</a> 
+<c> 
+<p n=1> 
+<s id="in:001-p1s1"> 
+<f cap>pøed<MDl src="m">pøed<MDt src="m">R-------------- 
+<f>domem<MDl src="m">dùm<MDt src="m">NNIS7-----A---- 
+<f>stojí<MDl src="m">stát-4<MDt src="m">VB-S---3P-AA--- 
+<f>auto<MDl src="m">auto<MDt src="m">NNNS4-----A---- 
+<f>a<MDl src="m">a-1<MDt src="m">J^------------- 
+<f>v<MDl src="m">v-1<MDt src="m">RR--6---------- 
+<f>domì<MDl src="m">dùm<MDt src="m">NNIS6-----A---- 
+<f>štìká<MDl src="m">štìkat<MDt src="m">VB-S---3P-AA--- 
+<f>pes<MDl src="m">pes<MDt src="m">NNMS1-----A---- 
+<D> 
+<d>.<MDl src="m">.<MDt src="m">Z:------------- 
+</c> 
+</doc> 
+</csts> 
+\end{verbatim}
+
+\newpage
+Takovıto vstup je rozdìlen na jednotlivé slovní jednotky (neboli tokeny – nejèastìji jedno slovo
+nebo interpunkèní znaménko) a ty jsou uloeny do pøíslušnıch struktur spolu se svou
+morfologickou informací, která je reprezentována jako patnáctipozièní znaèka (tag) pro kadou
+slovní jednotku. Kadá pozice této znaèky jednoznaènì urèuje jednu informaci, napøíklad slovní
+druh, rod, osobu, èíslo nebo pád slovní jednotky. Jejich pøesnı popis je k nahlédnutí na \\
+\verb|http://ufal.mff.cuni.cz/~hladka/rp200809/cz-appendix-D.pdf|.\\
+Z CSTS vıstupu nástroje tool\_chain jsou pro aplikaci \textit{Sense} relevantní pøedevším znaèky \\ \verb|<f>| (vlastní slovní jednotka), \verb|<d>|~(interpunkce), \verb|<MDl>|~(základní tvar) a \verb|<MDt>|~(morfologickı tag).
+
+\subsection{Dìlení souvìtí na vìty jednoduché}
+Pokud je na vstupu souvìtí, je nejprve rozdìleno na vìty jednoduché. Celé souvìtí je smysluplné,
+právì kdy jsou smysluplné všechny jeho vìty jednoduché. Vìtou jednoduchou je myšlena vìta,
+která obsahuje nejvıše jedno sloveso. Souvìtí je vìta obsahující alespoò dvì slovesa, skládající
+se z vìt jednoduchıch.
+\subsubsection{Algoritmus dìlení souvìtí na vìty jednoduché}
+Program nejprve najde pozici prvního slovesa ve vìtì, tuto si zapamatuje. Následnì postupuje od
+posledního slova vìty smìrem k prvnímu a hledá sloveso (ne v infinitivním tvaru). Kdy na nìjaké narazí, pokraèuje v naèítání slov dokud nenarazí na slovní jednotku, která mùe oddìlovat vìty (napø. spojka, èárka).
+V tom okamiku byla nalezena vìta jednoduchá. Program naète všechny další pøípadné
+oddìlovaèe (mùe jich bıt za sebou víc, napø. ``, ale i'') , uloí vìtu jednoduchou a opakuje.
+V okamiku, kdy narazí na první sloveso vìty, automaticky pøidá coby vìtu jednoduchou zbytek
+vstupu a konèí.
+
+\subsubsection{Pøíklad}
+``Umìní sahá hodnì daleko zpátky , a èím dál se díváme , tím kontroverznìjší jsou dùkazy''
+Prvním slovesem je ``sahá''. Algoritmus postupuje od konce vìty. Najde sloveso ``jsou'', dojde
+k èárce a pøidá vìtu ``, tím kontroverznìjší jsou dùkazy.'' Dále najde sloveso ``díváme'', po pøeètení ``,a èím'' pøidá další vìtu (``a èím dál se díváme''). Dále narazí na sloveso ``sahá'', to je prvním slovesem vìty a proto celı zbytek vstupu pøidá coby poslední vìtu jednoduchou (``Umìní sahá hodnì daleko zpátky'').
+
+\subsection{Algoritmus zjišování smysluplnosti jednoduché vìty}
+\subsubsection{Podmínky pro smysluplné dvojice slov}
+Analıza jednoduché vìty probíhá tak, e se pro kadou dvojici slovních jednotek pokusíme
+zjistit, zda je smysluplná. K tomu jsou pro kadou dvojici slovních druhù definovány podmínky,
+za kterıch je tato smysluplná. Tìchto podmínek mùe bıt pro jednu dvojici slovních druhù
+nìkolik, jedna, nebo vùbec ádná, pokud neexistuje smysluplné spojení tìchto slovních druhù.
+Program prochází všechny dvojice slovních jednotek ve vìtì a na základì jejich slovních
+druhù vybere pøíslušné podmínky, jejich platnost následnì ovìøuje. Pokud testovaná dvojice
+slovních jednotek splòuje alespoò jednu z nich, potom tvoøí smysluplnou dvojici slovních
+jednotek. V následujícím textu budou tyto podmínky oznaèovány jako \textit{podmínky typu (1)}.
+\paragraph{Pøíklad:}
+Dvojice podstatné a pøídavné jméno je smysluplná, pokud mají stejnı rod, pád i èíslo.
+U dvojice podstatné jméno a pøedloka mùeme pro smysluplnost poadovat, aby pøedloka ve vìtì pøedcházela podstatné jméno. O kadé pøedloce navíc víme, se kterımi pády podstatného jména se mùe vázat, mùeme tedy zároveò u podstatného jména vyadovat správnı pád vzhledem k pøedloce.
+\newpage
+Pro ilustraci bude dále slouit (jednoduchá) vìta: ``Ve škole, v práci a v knihovnì èasto
+trávím svùj volnı èas.'' Program pøi zkoumání této vìty nalezne následující smysluplné dvojice slovních jednotek dle podmínek typu (1): \vspace{5 mm} \\
+\begin{tabular}{p{0.4\textwidth} p{0.5\textwidth}}
+ve škole + v práci + v knihovnì & Podmínky pro spojení pøedloky a podstatného jména lze
+definovat napøíklad tak, e pøedloka musí bıt ve vìtì pøed
+podstatnım jménem, a to musí mít správnı pád vzhledem
+k základnímu tvaru pøedloky.\\
+èasto trávím & Dvojice pøíslovce a sloveso je vìtšinou smysluplná bez
+dalších omezení, resp. omezení by ubrala na obecnosti. \\
+svùj èas + volnı èas & Dvojice podstatné jméno + slovní druh rozvíjející
+podstatné jméno (napøíklad pøídavné jméno, zájmeno) lze
+rozpoznat podle shody v rodu, pádu, èísle atp. \\
+trávím v + trávím èas & Pro pospojování logickıch èástí vìty (pøísloveèné urèení
+místa, podmìtná èást, pøísudková èást atp.) jsou definovány
+(velmi obecné) podmínky spojující napøíklad sloveso
+s pøedlokou, nebo sloveso s podstatnım jménem. \\
+\end{tabular}
+\vspace{5 mm} \\
+Jakmile máme takto definovány potøebné podmínky, mùeme vìtu pøepracovat na graf \\$G=(V,E)$, kde $V$ = slovní jednotky vìty a $\forall  t1,t2$ slovní jednotky: $t1,t2 \in E \Leftrightarrow \exists$ podmínka pro smysluplnou dvojici, které t1 a t2 vyhovují. Smysluplnost vìty je potom definována jako souvislost takto vzniklého grafu smysluplnosti G.
+\vspace{5 mm} \\
+Takto vypadají komponenty konstruovaného grafu po aplikaci podmínek (1):
+	\begin{center}\includegraphics[width=0.75\textwidth]{C:/fig1.eps} \end{center}
+ \vspace{5 mm}
+Èárkovanì jsou vyznaèeny hrany odpovídající spojením, která jsou natolik obecná, e budou
+omezena dalšími typy podmínek (vıše zmínìná spojení pøedloky a slovesa nebo slovesa a
+podstatného jména).
+Základem jsou tedy podmínky a jejich definice. K tomuto úèelu slouí soubor \textit{conditions.txt} v adresáøi s programem. V nìm jsou veškeré tyto podmínky definovány a do nìj je moné další doplòovat, jeho formát bude popsán dále.
+\paragraph{}
+Takto definované podmínky ale neposkytují dostateènì silnı prostøedek k rozpoznání
+nesmysluplnosti vìty, nebo napøíklad spojení slovesa a podstatného jména je natolik obecné, e
+je podmínka prakticky prázdná. Potom staèí, aby v kadé komponentì grafu bylo jedno
+podstatné jméno a v celé vìtì jediné sloveso a graf bude souvislı, bez ohledu na smysluplnost
+vìty. Proto lze definovat další typy podmínek, které smysluplná vìta musí splòovat.
+\subsubsection{Podmínky pro spojování èástí vìty}
+Vıše definované podmínky dokáí vcelku rozumnì rozloit (implicitnì) vìtu na nìkolik úsekù,
+napøíklad rozvité podstatné jméno, urèení místa atp. Problémem je rozumné spojení tìchto
+úsekù, viz vıše zmínìnı problém se slovesem a podstatnım jménem a rozbor ilustraèní vìty.
+K tomuto úèelu je slouí druhı druh podmínek – definice ternárního vztahu slovní druh –
+spojka (èárka) – slovní druh, kterı øíká, za jakıch podmínek mùe spojka spojovat dvojici
+slovních jednotek s danımi slovními druhy. Je moné pøesnì definovat morfologické vlastnosti
+slovních jednotek na kadé stranì spojovacího vırazu a tím zpøísnit spojování úsekù vìty.
+\paragraph{Pøíklad: }
+Vrame se k rozpracované vìtì ``Ve škole, v práci a v knihovnì èasto trávím svùj volnı
+èas.'' Pøi hledání trojic splòujících nìkterou podmínku typu (2) budou nalezena spojení:
+``škole , práci'' + ``práci a knihovnì'' – v obou pøípadech se jedná o spojení podstatnıch jmen ve stejném pádì, jednou èárkou a jednou spojkou.
+\paragraph{}
+Obecnì jsou pro kadou dvojici shodnıch slovních druhù definovány podmínky (2),
+napøíklad dvì pøídavná jména mohou bıt spojena spojkou (èárkou), pokud mají stejnı pád a
+slovní poddruh, slovesa mohou bıt spojena spojkou, pokud jsou obì v infinitivním tvaru atp.
+\paragraph{}
+V této vìtì byly tedy podmínkami (2) spojeny tøi urèení místa do jednoho souvislého
+úseku a rovnì byly do vìty zapojeny slovní jednotky ',' a 'a' – i ty jsou brány v potaz pøi
+urèování smysluplnosti.
+\paragraph{}
+Pro tento pøíklad by se zøejmì zdálo logiètìjší, kdyby byly podmínkami (2) spojeny
+pøedloky místo podstatnıch jmen, nicménì algoritmus se zastaví u první nalezené dvojice, je
+mùe zkoumaná spojka / èárka spojovat – pro potøeby analızy smysluplnosti staèí, e existuje
+nìjaká taková dvojice, kdyby hledání pokraèovalo dál, byla by nalezena i monost spojení
+pøedloek.
+
+\vspace{5 mm}
+Takto budou vypadat komponenty konstruovaného grafu po aplikaci podmínek (2):
+\begin{center}
+\includegraphics[width=0.8\textwidth]{C:/fig2.eps}
+\end{center}
+
+\subsubsection{Podmínky pro maximální poèet vztahù}
+Dalším prostøedkem pro zpøísnìní analızy jsou podmínky pro omezení poètu vztahù. Pokud není
+poèet vztahù nijak omezen, nastává problém s rozpoznáváním nesmyslnıch vìt, napøíklad
+podmínka spojující èástici / citoslovce se slovesem opìt nemá prakticky ádné morfologické
+informace, které by se daly kontrolovat, tedy jakékoli citoslovce se naváe na všechna slovesa
+vìty bez omezení.
+Tato podmínka poskytuje prostøedek k vyjádøení podmínek typu ``jedna èástice se mùe navázat
+nejvıše na jedno sloveso'' atp. V tomto pøípadì se jedná o nesymetrickou relaci.
+\paragraph{Pøíklad:}
+Do tøetice všeho dobrého se podívejme na vìtu ``Ve škole, v práci a v knihovnì èasto trávím
+svùj volnı èas'' Tato vìta je smysluplná, proto zde podmínky typu (3) nehrají zásadní roli. Zde
+by se projevila pouze jediná podmínka (3) øíkající, e podstatné jméno se naváe nejvıše na
+jednu pøedloku. Tím pádem by napøíklad nedošlo ke vzniku dvojic ``ve práci'' nebo ``v škole''.
+Na vısledku to však nic nezmìní, vìta by byla vyhodnocena jako smysluplná i bez podmínek
+typu (3).
+\paragraph{}
+Nyní uvame zjevnì nesmyslnou vìtu ``Dùm dìlá malı vidìl pes.'' Tato ``vìta''
+neobsahuje spojku ani èárku, take dìlením na vìty jednoduché projde beze zmìny a bude
+analyzována coby vìta jednoduchá. Takto by vypadal zkonstruovanı graf bez podmínek (3):
+\begin{center}
+\includegraphics[width=0.8\textwidth]{C:/fig3.eps}
+\end{center}
+
+Všechny vyznaèené hrany (bez ohledu na styl èáry) odpovídají podmínkám (1). Graf je zjevnì souvislı, navzdory naprosté nesmyslnosti vìty. Zde poskytuje zavedení podmínek (3) vìtší pøesnost. Máme napøíklad definovány podmínky (3) urèující, e pøídavné jméno se smí navázat nejvıše na jedno podstatné jméno a podstatné jméno nejvıše na  jedno sloveso. Hrany nyní svım stylem (plná / pøerušovaná / èerchovaná èára) odpovídají tìmto omezením: z kadé mnoiny hran stejného stylu mùeme pouít pouze (v tomto pøípadì) jednu. 
+Nyní u graf díky menšímu poètu hran souvislı nebude (bez ohledu na to, jaké hrany vybereme - nejvıše lze vybrat tøi, ale kostra grafu na pìti vrcholech má ètyøi hrany).
+
+\subsubsection{Popis formátu souboru podmínek}
+Soubor s podmínkami má speciální formát, kterı je tøeba dodret pøi jeho pøípadném rozšiøování.
+Ve finální verzi bude nejspíše s programem dodávána i k tomu urèená utilita.
+V souboru je moné psát jednoøádkové komentáøe uvozené //. Nezáleí na poøadí definovanıch
+podmínek.
+\paragraph{Definice podmínek pro smysluplné dvojice (1):\\} 
+\begin{tabular}{l l l}
+\textit{rel} & \textit{Slovní druh 1} & \textit{Slovní druh 2} \\
+\textit{[!][1]} & [hodnota] & [hodnota] \\
+\textit{[!][2]} & [hodnota] & [hodnota] \\
+\textit{[!][3]} & [hodnota] & [hodnota] \\
+\textit{[!][4]} & [hodnota] & [hodnota] \\
+\textit{...} & & \\
+\textit{[!][15]} & [hodnota] & [hodnota] \\
+\textit{[!][lemma]} & [hodnota] & [hodnota] \\
+\textit{[!][val]} & [hodnota] & [hodnota] \\
+\textit{[dist]} & hodnota \\
+\textit{[ord]} & 1,2 & [1,2] \\
+\textit{end} & & \\
+\end{tabular}
+
+\vspace{5 mm}
+Deklarace podmínky je uvozena klauzulí \textit{rel}, za ní následují identifikátory \textit{Slovní druh 1} a \textit{Slovní druh 2} urèující dvojici slovních druhù, pro které je podmínka smysluplnosti definována.
+
+\newpage
+
+\vspace{5 mm}
+Aèkoli sémanticky na poøadí nezáleí, v souboru musí bıt uveden jako první slovní druh
+s niším èíslem. Oddìlovaèem je mezera nebo tabulátor. Identifikátory a èísla slovních druhù zachycuje následující tabulka:
+\paragraph{Identifikátory  a èísla slovních druhù:\\}
+\begin{tabular}{l c c | l c c}
+Slovní druh & Identifikátor & Èíslo & Slovní druh & Identifikátor & Èíslo \\
+\hline
+Podstatné jméno & \textbf{N} & 1 & Pøíslovce & \textbf{D} & 6 \\
+Pøídavné jméno & \textbf{A} & 2& Pøedloka & \textbf{R} & 7\\
+Zájmeno & \textbf{P} & 3 & Spojka & \textbf{J} & 8\\
+Èíslovka & \textbf{C} & 4 & Èástice & \textbf{T} & 9\\
+Sloveso & \textbf{V} & 5 & Citoslovce & \textbf{I} & 10\\
+\end{tabular}
+
+\paragraph{}
+Následují podmínky pro hodnoty tagù obou slovních jednotek, na jednom øádku jedna
+podmínka, uvozena je èíslem pozice dané morfologické kategorie (1-15), poté pro kadou slovní
+jednotku poadovaná \textit{hodnota}.
+\paragraph{}
+\textit{Hodnota} mùe bıt buï jedna konkrétní hodnota dané kategorie, více monıch hodnot ve
+tvaru (hod1 hod2 hod3) – tedy v závorkách oddìlené mezerami, nebo znak + kterı zastupuje
+libovolnou hodnotu, nebo znak -, kterı znamená rovnost hodnotì stejné morfologické kategorie
+druhé slovní jednotky (pokud obì slovní jednotky mají coby hodnotu jedné kategorie -, mohou
+bıt hodnoty libovolné, ale musejí se rovnat). \textit{Hodnota} také nemusí bıt vyplnìna vùbec, v tom pøípadì je vıznam stejnı jako +.
+\paragraph{}
+Dále se lze odkázat na základní tvary (lemmata) obou slovních jednotek, v tomto pøípadì
+je \textit{hodnota} pøíslušnı základní tvar (seznam základních tvarù / + / - jako v prvním pøípadì)
+\paragraph{}
+Na slovosled se lze odkázat pomocí klauzule \textit{ord} a poøadového èísla pro kadou slovní
+jednotku (1 – slovní jednotka je první z dvojice, 2 – slovní jednotka je druhá z dvojice).
+\paragraph{}
+Pøed øádkem je moné uvést nepovinnì symbol ! oznaèující negaci. Pokud je øádek
+negovanı, znamená to, e pokud je podmínka urèená tímto øádkem splnìna, celá podmínka
+splnìna není. Tedy napøíklad ``!lemma matka +'' øíká, e základní tvar první slovní jednotky
+nesmí bıt ``matka''.
+\paragraph{}
+Podobnì jako na základní tvary se lze odkázat i na konkrétní tvary obou slovních
+jednotek tak, jak jsou ve vìtì. K tomu slouí klauzule \textit{val}, její zápis je stejnı jako klauzule \textit{lemma}.
+\paragraph{}
+Maximální vzdálenost slovních jednotek ve vìtì lze omezit pomocí klauzule \textit{dist}.
+Vzdálenosti slov se rozumí absolutní hodnota rozdílu pozic slov ve vìtì. Pokud je tato vìtší ne
+hodnota uvedená v klauzuli \textit{dist}, podmínka neuspìje.
+\paragraph{}
+Prakticky všechny tyto podmínky jsou nepovinné, lze vytvoøit i úplnì prázdnou
+podmínku, která bude splnìna pro kadou dvojici slovních jednotek s odpovídajícími slovními
+druhy.\\
+Definice vztahu konèí øádkem uvozenım klauzulí \textit{end}.
+
+\paragraph{Definice podmínek pro spojování èástí vìty (2):\\} 
+\begin{tabular}{l l l}
+\textit{rel} & \textit{Slovní druh 1} & \textit{Slovní druh 2} \\
+\textit{[!][1]} & [hodnota] & [hodnota] \\
+\textit{[!][2]} & [hodnota] & [hodnota] \\
+\textit{[!][3]} & [hodnota] & [hodnota] \\
+\textit{[!][4]} & [hodnota] & [hodnota] \\
+\textit{...} & & \\
+\textit{[!][15]} & [hodnota] & [hodnota] \\
+\textit{[!][tok]} & [hodnota] &  \\
+\textit{end} & & \\
+\end{tabular}
+
+\paragraph{}
+Podmínka øíká, kdy mùou bıt slovní jednotky se slovními druhy \textit{Slovní druh 1} a \textit{Slovní druh 2} spojeny spojkou nebo èárkou, tedy vztah je ternární, ale syntax má témìø stejnou jako pøedchozí binární. Hodnoty tagù jednotlivıch slovních jednotek se definují stejnì. Za klauzulí tok následuje základní tvar spojky, pokud musí bıt nìjakı konkrétní.
+\paragraph{}
+Podmínka je aplikována tak, e pokud je ve vìtì nalezena spojka nebo èárka, najde se k ní nejbliší pár slovních jednotek (jeden zleva, jeden zprava), kterı vyhovuje nìkteré z takto definovanıch podmínek. Další slovní jednotky ji tato konkrétní spojka (èárka) neváe.
+
+\paragraph{Definice podmínek pro omezení poètu relací (3):\\} 
+\begin{tabular}{l l l l}
+\textit{max} & \textit{Slovní druh 1} & \textit{Slovní druh 2} & \textit{maximum}\\
+\end{tabular}
+
+\paragraph{}
+Tato podmínka je na jedinı øádek. Uvozena klauzulí \textit{max}, u následující dvojice
+identifikátorù slovních druhù záleí na poøadí (sémanticky i syntakticky), \textit{maximum} je èíslo vìtší nebo rovné 1. Takováto podmínka má vıznam ``Jedna konkrétní slovní jednotka se slovním druhem slovní druh 1 se mùe navázat nejvıše na \textit{maximum} rùznıch slovních jednotek se slovním druhem slovní druh 2.'' Navázat znamená vytvoøit hranu v konstruovaném grafu.
+\paragraph{}
+Vynucování této podmínky je realizováno tak, e pokud ze všech smysluplnıch vztahù
+lze vybrat alespoò jednu podmnoinu splòující podmínku (3), staèí to pro smysluplnost vìty.
+Proto je její ovìøování nároènìjší ne u ostatních podmínek, v souèasné verzi program s jistou
+optimalizací monosti generuje.
+
+\subsection{Èasová sloitost algoritmu}
+Oznaème $n =$ poèet slovních jednotek ve vìtì. Naètení vìty probìhne zjevnì v $O(n)$, naètení
+souboru s podmínkami $O(s)$, kde $s$ je délka souboru s podmínkami.
+\paragraph{}
+Rozdìlení souvìtí na vìty jednoduché probìhne v èase $O(n)$, následné hledání dvojic
+podle podmínek (2) rovnì $O(n)$, nebo v obou èástech je nejhorším pøípadem prùchod celé vìty.
+\paragraph{}
+Pøi hledání podmínek (1) jsou zkoumány všechny dvojice slovních jednotek vìty a pro
+kadou by mìly bıt v konstantním èase (asociativní pole) vyhledány a ovìøeny odpovídající
+podmínky. Pokud budeme pøedpokládat, e poèet definovanıch podmínek pro jednu dvojici
+slovních jednotek bude konstantní, vychází èasová sloitost této fáze $O(n^{2})$.
+\paragraph{}
+Dále je tøeba projít vìtu a zanést do konstruovaného grafu informaci o podmínkách (3),
+pokud opìt budeme uvaovat konstantní poèet tìchto podmínek, vychází èas $O(n)$.
+\paragraph{}
+Poslední fází je kontrola souvislosti grafu, ta sestává jednak z DFS prùchodu grafu. Zde
+je tøeba uvaovat sloitost $O(V+E)$, kde $V$ je poèet vrcholù grafu a $E$ je poèet hran. Vzhledem k tomu, e vrcholy grafu tvoøí slovní jednotky, vychází èasová sloitost $O(n^{2})$.
+\paragraph{}
+Koneènì nejnároènìjší fází je hledání øešení, které splòuje všechny definované podmínky
+(3). Oznaèíme-li $p$ poèet hran omezenıch podmínkami (3), potom všech podmnoin této
+mnoiny je a $2^{p}$ a kontrola jedné z nich trvá a $O(n)$, take tato fáze trvá a $O(n*2^{p})$, co je øádovì déle, ne zbytek algoritmu. Proto je v aplikaci zabudována pevná mez pro poèet iterací procedury vykonávající tuto fázi, po jejím pøekroèení se namísto generování všech moností pouije lineární heuristika – vyberou se vdy ty vazby, jejich slovní jednotky k sobì mají ve vìtì nejblíe.
+\paragraph{}
+Celková sloitost tedy vychází v nejhorším pøípadì $O(s) +O(n^{2})$ kde $s$ je délka souboru
+s podmínkami a $n$ je poèet slovních jednotek vìty.
+
+\end{document}
