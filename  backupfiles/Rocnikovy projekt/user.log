@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=cslatex 2009.2.15)  15 FEB 2009 17:16
+This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=pdfcslatex 2009.2.15)  15 FEB 2009 18:48
 entering extended mode
-**user.tex
-(user.tex
+**C:/Documents*and*Settings/Fin/Dokumenty/Versioned/Rocnikovy*projekt/user.tex
+("C:\Documents and Settings\Fin\Dokumenty\Versioned\Rocnikovy projekt\user.tex"
 LaTeX2e <2005/12/01>
 Loading CZ hyphenation patterns: Pavel Sevecek, v3, 1995
 Loading SK hyphenation patterns: Jana Chlebikova, 1992
@@ -55,71 +55,105 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 ("C:\Program Files\MiKTeX 2.6\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: dvips.def on input line 90.
+Package graphics Info: Driver file: pdftex.def on input line 90.
 
-("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\dvips.def"
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+("C:\Program Files\MiKTeX 2.6\tex\latex\graphics\pdftex.def"
+File: pdftex.def 2007/06/12 v0.04h Graphics/color for pdfTeX
+\Gread@gobject=\count87
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 ) (user.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 12.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 12.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 12.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 17.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
 
-[1
+("C:\Program Files\MiKTeX 2.6\tex\context\base\supp-pdf.tex"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count88
+\scratchdimen=\dimen105
+\scratchbox=\box26
+\nofMPsegments=\count89
+\nofMParguments=\count90
+\MPscratchCnt=\count91
+\MPscratchDim=\dimen106
+\MPnumerator=\count92
+\everyMPtoPDFconversion=\toks19
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 18.
+ [1
 
-]
-LaTeX Font Info:    Try loading font information for IL2+cmtt on input line 51.
+{psfonts.map}]
+LaTeX Font Info:    Try loading font information for IL2+cmtt on input line 52.
 
  ("C:\Program Files\MiKTeX 2.6\tex\latex\cslatex\il2cmtt.fd"
 File: il2cmtt.fd 1997/08/20 CSLaTeX font definitions
-) [2] [3]
-[4] [5]
-File: C:/fig1.eps Graphic file (type eps)
- <C:/fig1.eps> [6]
-File: C:/fig2.eps Graphic file (type eps)
- <C:/fig2.eps> [7]
-File: C:/fig3.eps Graphic file (type eps)
- <C:/fig3.eps> [8] [9] [10] [11]
-File: C:/fig4.eps Graphic file (type eps)
+) [2] [3] [4] [5] <C:/fig1.png, id=26, 450.9347pt x 109.91063pt>
+File: C:/fig1.png Graphic file (type png)
 
-<C:/fig4.eps> [12]
-File: C:/fig5.eps Graphic file (type eps)
- <C:/fig5.eps> [13]
-File: C:/fig6.eps Graphic file (type eps)
- <C:/fig6.eps> [14] (user.toc)
+<use C:/fig1.png> [6 <C:/fig1.png (PNG copy)>]
+<C:/fig2.png, id=32, 601.24625pt x 164.615pt>
+File: C:/fig2.png Graphic file (type png)
+ <use C:/fig2.png>
+<C:/fig3.png, id=33, 255.20343pt x 112.92188pt>
+File: C:/fig3.png Graphic file (type png)
+ <use C:/fig3.png> [7 <C:/fig2.png (PNG copy)>] [8 <C:/fig3.png (PNG copy)>] [9
+] [10] [11]
+<C:/fig4.png, id=54, 232.61906pt x 229.60782pt>
+File: C:/fig4.png Graphic file (type png)
+ <use C:/fig4.png> [12 <C:/fig4.png (PNG copy)>] <C:/fig5.png, id=58, 668.4975p
+t x 761.84625pt>
+File: C:/fig5.png Graphic file (type png)
+
+<use C:/fig5.png> [13 <C:/fig5.png (PNG copy)>]
+<C:/fig6.png, id=63, 491.8375pt x 443.6575pt>
+File: C:/fig6.png Graphic file (type png)
+ <use C:/fig6.png> [14 <C:/fig6.png (PNG copy)>] (user.toc)
 \tf@toc=\write3
- [15]
-(user.aux) ) 
+ [15] (user.aux) ) 
 Here is how much of TeX's memory you used:
- 782 strings out of 95159
- 8363 string characters out of 1183490
- 59369 words of memory out of 1058137
- 4023 multiletter control sequences out of 60000
+ 1124 strings out of 95155
+ 13226 string characters out of 1183347
+ 64692 words of memory out of 1062948
+ 4375 multiletter control sequences out of 60000
  13500 words of font info for 35 fonts, out of 1000000 for 2000
  24 hyphenation exceptions out of 8191
- 25i,9n,22p,939b,287s stack positions out of 5000i,500n,10000p,200000b,32768s
+ 25i,9n,22p,1007b,283s stack positions out of 5000i,500n,10000p,200000b,32768s
+<C:/Program Files/MiKTeX 2.6/fonts/type1/bluesky/cm/cmmi10.pf
+b><C:/Program Files/MiKTeX 2.6/fonts/type1/bluesky/cm/cmmi7.pfb><C:/Program Fil
+es/MiKTeX 2.6/fonts/type1/bluesky/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.6/fo
+nts/type1/public/cs/csbx10.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/
+cs/csbx12.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csr10.pfb><C:/
+Program Files/MiKTeX 2.6/fonts/type1/public/cs/csr12.pfb><C:/Program Files/MiKT
+eX 2.6/fonts/type1/public/cs/csr17.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1
+/public/cs/csr6.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csr7.pfb
+><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/csr8.pfb><C:/Program Files/
+MiKTeX 2.6/fonts/type1/public/cs/csr9.pfb><C:/Program Files/MiKTeX 2.6/fonts/ty
+pe1/public/cs/csti10.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/cst
+t10.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/public/cs/cstt9.pfb>
+Output written on user.pdf (15 pages, 258956 bytes).
+PDF statistics:
+ 117 PDF objects out of 300000 (max. 8388607)
+ 0 named destinations out of 300000 (max. 131072)
+ 31 words of extra memory for PDF output out of 65536 (max. 10000000)
 
-Output written on user.dvi (15 pages, 55420 bytes).
