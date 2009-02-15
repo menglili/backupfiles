@@ -146,7 +146,7 @@ oddìlovaèe (mùže jich být za sebou víc, napø. ``, ale i'') , uloží vìtu jednoduc
 V okamžiku, kdy narazí na první sloveso vìty, automaticky pøidá coby vìtu jednoduchou zbytek
 vstupu a konèí.
 
-\subsubsection{Pøíklad}
+\paragraph{Pøíklad}
 ``Umìní sahá hodnì daleko zpátky , a èím dál se díváme , tím kontroverznìjší jsou dùkazy''
 Prvním slovesem je ``sahá''. Algoritmus postupuje od konce vìty. Najde sloveso ``jsou'', dojde
 k èárce a pøidá vìtu ``, tím kontroverznìjší jsou dùkazy.'' Dále najde sloveso ``díváme'', po pøeètení ``,a èím'' pøidá další vìtu (``a èím dál se díváme''). Dále narazí na sloveso ``sahá'', to je prvním slovesem vìty a proto celý zbytek vstupu pøidá coby poslední vìtu jednoduchou (``Umìní sahá hodnì daleko zpátky'').
@@ -387,5 +387,82 @@ množiny je až $2^{p}$ a kontrola jedné z nich trvá až $O(n)$, takže tato fáze tr
 \paragraph{}
 Celková složitost tedy vychází v nejhorším pøípadì $O(s) +O(n^{2})$ kde $s$ je délka souboru
 s podmínkami a $n$ je poèet slovních jednotek vìty.
+
+\subsection{Shrnutí algoritmu}
+Následuje struèné shrnutí celého použitého algoritmu
+\begin{enumerate}
+\item Naèíst vstupní vìtu a soubor s podmínkami.
+\item Pokud je na vstupu souvìtí, je rozdìleno na vìty jednoduché. Celá vìta je smysluplná
+právì když jsou smysluplné všechny její vìty jednoduché.
+\item Pro každou vìtu jednoduchou zkonstruovat ``graf smysluplnosti'', vrcholy = slovní
+jednotky vìty a hrany pøidávány na základì definovaných podmínek, tedy:
+\begin{enumerate}
+\item Najít všechny spojky a èárky ve vìtì a aplikovat podmínky (2)
+\item Projít všechny dvojice slovních jednotek ve vìtì a aplikovat pro nì podmínky (1)
+\end{enumerate}
+\item Zkontroluje se souvislost vzniklého grafu, vìta je smysluplná, právì když je graf
+souvislý. Zároveò je tøeba kontrolovat platnost podmínek (3).
+\begin{enumerate}
+\item Provést DFS \footnote{Depth First Search, tedy prùchod grafem do hloubky – algoritmus, který dokáže projít postupnì všechny vrcholy
+(souvislého) grafu. Podrobný popis lze nalézt na http://en.wikipedia.org/wiki/Depth-first\_search nebo v èeštinì
+na http://cs.wikipedia.org/wiki/DFS} na sestavený graf, bez použití jakékoli hrany, která je omezená
+nìkterou z podmínek (3). Pokud jsou takto dosažitelné všechny vrcholy, vìta je
+smysluplná.
+\item Pokud vznikne nìkolik komponent, mezi nimi budou hrany omezené podmínkami
+(3). To znamená, že nemusí být možné je použít všechny, proto program hledá
+zpùsob, jakým vybrat podmnožinu tìchto hran, která všechny komponenty spojí
+do jedné a zároveò neporuší žádnou z podmínek (3). Pokud takovou najde, vìta
+(jednoduchá, ne celé souvìtí) je prohlášena za smysluplnou. Situaci popisuje
+obrázek.
+\end{enumerate}
+\end{enumerate}
+\newpage
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{C:/fig4.eps}
+\end{center}
+
+K1 – K4 jsou komponenty vzniklé DFS prùchodem po hranách neomezených podmínkami (3),
+mezi nimi vedou hrany omezené podmínkami (3). Z hran vyznaèených jedním stylem lze vybrat
+pouze k hran, kde k je èíslo uvedené u každé hrany z této skupiny. Situaci na obrázku by napø.
+vyhovovala množina hran K3K5, K1K4,K1K3 a K2K3.
+
+\newpage
+\paragraph{Vývojový diagram}
+\begin{center}
+\includegraphics[width=0.95\textwidth,height=17cm]{C:/fig5.eps}
+\end{center}
+
+\subsection{Evaluace}
+Program byl testován na tøech sadách dat. První byla data poskytnutá portálem Seznam.cz, na
+smysluplných vìtách byla úspìšnost programu zhruba 85\%, na nesmyslných 90\%.
+Dále byl program testován na datech získaných z Èeského akademického korpusu 1.0 – na
+smysluplných vìtách zde byla úspìšnost programu zhruba 80\%, na nesmyslných potom 40\%.
+Nižší úspìšnost je zèásti dána tím, že nesmyslné vìty byly v tomto pøípadì získány ze
+smysluplných pouhým vypuštìním nìkterých slovních jednotek. \\
+Tøetí byla testovací sada dvaceti smysluplných a zhruba 100 nesmyslných vìt.
+U smysluplných byla úspìšnost programu 85 \%, u nesmyslných 8\%.
+ 
+\subsection{Utilita pro úpravu podmínek}
+Pro usnadnìní editace souboru podmínek slouží utilita \textit{ConEdit} pøiložená v instalaèním balíèku.
+Poskytuje jednoduché grafické rozhraní, které umožòuje správu souboru s podmínkami bez
+jakékoli znalosti jeho vnitøního formátu. Utilita je napsána v jazyku Java, je tedy multiplatformní
+a její instalace i spouštìní je stejné na OS Windows i Unix – staèí rozbalit obsah adresáøe
+ConEdit do libovolného umístìní a spustit soubor \textit{ConEdit.jar}. Jediným softwarovým
+požadavkem je nainstalovaná Java Virtual Machine.
+\paragraph{}
+Po spuštìní je tøeba nejprve otevøít soubor s podmínkami (volba \textit{file->open}), následnì budou
+naèteny všechny uložené podmínky. Po kliknutí na kteroukoli z nich je možné ji editovat nebo
+smazat, pøípadnì je možné pøidat novou podmínku.
+
+\begin{figure}[!h]
+\begin{center}
+\caption{Utilita ConEdit}
+\includegraphics[width=0.9\textwidth]{C:/fig6.eps}
+\end{center}
+\end{figure}
+
+\newpage
+\tableofcontents
 
 \end{document}

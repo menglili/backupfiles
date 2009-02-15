@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=cslatex 2009.1.7)  13 FEB 2009 21:06
+This is pdfTeX, Version 3.141592-1.40.4 (MiKTeX 2.6) (preloaded format=cslatex 2009.2.15)  15 FEB 2009 17:16
 entering extended mode
 **user.tex
 (user.tex
@@ -103,14 +103,23 @@ File: C:/fig2.eps Graphic file (type eps)
  <C:/fig2.eps> [7]
 File: C:/fig3.eps Graphic file (type eps)
  <C:/fig3.eps> [8] [9] [10] [11]
+File: C:/fig4.eps Graphic file (type eps)
+
+<C:/fig4.eps> [12]
+File: C:/fig5.eps Graphic file (type eps)
+ <C:/fig5.eps> [13]
+File: C:/fig6.eps Graphic file (type eps)
+ <C:/fig6.eps> [14] (user.toc)
+\tf@toc=\write3
+ [15]
 (user.aux) ) 
 Here is how much of TeX's memory you used:
- 752 strings out of 95159
- 8206 string characters out of 1183491
+ 782 strings out of 95159
+ 8363 string characters out of 1183490
  59369 words of memory out of 1058137
- 4019 multiletter control sequences out of 60000
+ 4023 multiletter control sequences out of 60000
  13500 words of font info for 35 fonts, out of 1000000 for 2000
  24 hyphenation exceptions out of 8191
- 25i,9n,22p,939b,201s stack positions out of 5000i,500n,10000p,200000b,32768s
+ 25i,9n,22p,939b,287s stack positions out of 5000i,500n,10000p,200000b,32768s
 
-Output written on user.dvi (11 pages, 41108 bytes).
+Output written on user.dvi (15 pages, 55420 bytes).
