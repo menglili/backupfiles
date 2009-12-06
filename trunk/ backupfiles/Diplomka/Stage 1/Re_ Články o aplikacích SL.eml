@@ -1,0 +1,136 @@
+Return-Path: <rudolf.kadlec@gmail.com>
+X-Original-To: v.rovensky@lit.cz
+Delivered-To: v.rovensky@lit.cz
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.bezdrat.net (Postfix) with ESMTP id DEFDFC069
+	for <v.rovensky@lit.cz>; Thu, 26 Nov 2009 15:50:03 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail.bezdrat.net
+Received: from mail.bezdrat.net ([127.0.0.1])
+	by localhost (mail.bezdrat.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id qIFhnIkBgU-H for <v.rovensky@lit.cz>;
+	Thu, 26 Nov 2009 15:50:00 +0100 (CET)
+Received: from mail-ew0-f213.google.com (mail-ew0-f213.google.com [209.85.219.213])
+	by mail.bezdrat.net (Postfix) with ESMTP id AE068C082
+	for <v.rovensky@lit.cz>; Thu, 26 Nov 2009 15:48:45 +0100 (CET)
+Received: by ewy5 with SMTP id 5so1031095ewy.10
+        for <v.rovensky@lit.cz>; Thu, 26 Nov 2009 06:48:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:mime-version:received:in-reply-to:references
+         :date:message-id:subject:from:to:content-type
+         :content-transfer-encoding;
+        bh=Nx3B5dvIbgBtg0A6/AisoatazFUAgtwY/VRf0lVBiSI=;
+        b=HCPWYmRN/knyRMs7S2ibwpkQqKa0hN0uUtvLYmIC+/uE4L1Ag9GlzzMnCDMF65EJ9/
+         rQrUYb+GWzo5Bh2xDGrRccNpk2OmrNe43F2xtpJ3gafiFdbpNtFAJAcTrScKHPTL4URN
+         uu/Q1YiHSbgYQkMW2OwCdR5rCyJ3eFS0LucPc=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type:content-transfer-encoding;
+        b=ofhToKBdsxmZhvxIt5cWe0ZTm1cOaUms7pwJ8crt0U0zAVvuT2VDsUISVy9FmRR/3A
+         CWfpkcwjmcfAkKtISAA4+qv3wZln/5E1CPmKMkeL0UHNUujqWLiz0mbB574xCeShm+Lj
+         aHYD3auadHnrAqV1RbfbPZ0IPEQWFnF0NJQYg=
+MIME-Version: 1.0
+Received: by 10.216.87.68 with SMTP id x46mr2975735wee.2.1259246923874; Thu, 
+	26 Nov 2009 06:48:43 -0800 (PST)
+In-Reply-To: <1259246727.4b0e9487ac02e@webmail.bezdrat.net>
+References: <1259246727.4b0e9487ac02e@webmail.bezdrat.net>
+Date: Thu, 26 Nov 2009 15:48:43 +0100
+Message-ID: <f96a29930911260648m26562f1dyd2d564ef67d87591@mail.gmail.com>
+Subject: =?ISO-8859-2?Q?Re=3A_=C8l=E1nky_o_aplikac=EDch_SL?=
+X-Eset-AntiSpam: OK;10;calc;2009-11-26 15:50:27;0911261550270001;0099
+From: Rudolf Kadlec <rudolf.kadlec@gmail.com>
+To: v.rovensky@lit.cz
+Content-Type: text/plain; charset=ISO-8859-2
+Content-Transfer-Encoding: quoted-printable
+Old-X-EsetId: 956D1529724864698A6B157C781B24
+Old-X-EsetId: 956D1529724864698A6B157C781B24
+X-EsetScannerBuild: 6167
+Old-X-EsetId: 956D1529724864698A6B157C781B26
+Old-X-EsetId: 956D1529724864698A6B157C781820
+Old-X-EsetId: 956D1529724864698A6B157C781822
+Old-X-EsetId: 956D1529724864698A6B157C781824
+Old-X-EsetId: 956D1529724864698A6B157C781828
+Old-X-EsetId: 956D1529724864698A6B157C781F28
+X-EsetId: 956D1529724864698A6B157C781C26
+
+od dvou nem=E1m =E8as, tak=BEe bych to nechal na 13:00
+
+2009/11/26  <v.rovensky@lit.cz>:
+> Ahoj
+> Ano, rozbehal jsem OpenSim server na localhostu i libopenmetaverse, zkusi=
+l jsem
+> si napsat par jednoduchych botu a +- to vypada nadejne. Ve stredu se urci=
+te
+> muzeme sejit, vic by se mi to hodilo kolem 2 hodiny, ale pokud by to byl =
+problem
+> tak muzu prijit i na 1.
+>
+> V.Rovensky
+>
+> Ahoj,
+> v =F8=EDjnu jsme =F8=EDkali, =BEe se na za=E8=E1tku prosince sejdeme a do=
+hodneme se
+> na dal=B9=EDm postupu pr=E1ce. Vyzkou=B9el jsi mezit=EDm rozb=EChnout z=
+=E1kladn=ED
+> komunikaci p=F8es LibOpenMetaverse? A=BB se m=F9=BEeme bavit o n=ECco
+> konkr=E9tn=ECji ne=BE p=F8ed dv=ECma m=ECs=EDci.
+> Pro m=EC i pro Cyrila by bylo nejp=F8=EDhodn=ECj=B9=ED se sej=EDt p=F8=ED=
+=B9t=ED st=F8edu cca
+> od 13:00. Pokud by ti to nevyhovovalo tak dohodneme jin=FD term=EDn.
+> R
+>
+>
+>
+> 2009/10/13 =A0<v.rovensky@lit.cz>:
+>> Super, diky moc. Mrknu na to.
+>>
+>> V.Rovensky
+>>
+>> Cituji z emailu od Rudolf Kadlec <rudolf.kadlec@gmail.com>:
+>>
+>>> Ahoj,
+>>> pos=EDl=E1m sl=EDben=E9 =E8l=E1nky o agentech b=EC=BE=EDc=EDch v Second=
+Lifu, v prvn=EDm je
+>>> n=ECco m=E1lo i o technologii, v druh=E9m v podstat=EC nic. Bylo by ur=
+=E8it=EC
+>>> zaj=EDmav=E1 zjistit, jestli existuje i podobn=E1 aplikace na OpenSim,
+>>> napov=ECd=EClo by n=E1m to nakolik je OpenSim stabiln=ED.
+>>>
+>>>
+>>> A Virtual Tour Guide for Virtual Worlds
+>>> http://people.ict.usc.edu/~traum/Papers/SDO.pdf
+>>>
+>>> Virtual Agents and 3D Virtual Worlds for
+>>> Preserving and Simulating Cultures
+>>> http://www-staff.it.uts.edu.au/~anton/Publications/IVA09.pdf
+>>>
+>>> Ruda
+>>>
+>>
+>>
+>>
+>>
+>>
+>
+> __________ Informace od ESET Smart Security, verze databaze 4638 (2009112=
+6)
+> __________
+>
+> Tuto zpravu proveril ESET Smart Security.
+>
+> http://www.eset.cz
+>
+>
+>
+>
+>
+
+__________ Informace od ESET Smart Security, verze databaze 4638 (20091126)=
+ __________
+
+Tuto zpravu proveril ESET Smart Security.
+
+http://www.eset.cz
+
+

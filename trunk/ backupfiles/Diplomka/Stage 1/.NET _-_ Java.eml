@@ -1,0 +1,66 @@
+Return-Path: <rudolf.kadlec@gmail.com>
+X-Original-To: v.rovensky@lit.cz
+Delivered-To: v.rovensky@lit.cz
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.bezdrat.net (Postfix) with ESMTP id 978F2C031
+	for <v.rovensky@lit.cz>; Wed,  2 Dec 2009 13:42:02 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail.bezdrat.net
+Received: from mail.bezdrat.net ([127.0.0.1])
+	by localhost (mail.bezdrat.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id x-ICDPrYG4HU for <v.rovensky@lit.cz>;
+	Wed,  2 Dec 2009 13:42:00 +0100 (CET)
+Received: from mail-ew0-f213.google.com (mail-ew0-f213.google.com [209.85.219.213])
+	by mail.bezdrat.net (Postfix) with ESMTP id 2056DC027
+	for <v.rovensky@lit.cz>; Wed,  2 Dec 2009 13:41:59 +0100 (CET)
+Received: by ewy5 with SMTP id 5so238936ewy.10
+        for <v.rovensky@lit.cz>; Wed, 02 Dec 2009 04:41:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:mime-version:received:date:message-id:subject
+         :from:to:cc:content-type:content-transfer-encoding;
+        bh=/2tO9xvk6Ha254Fso7D4+ymrZ8Ngm4VbmEUghpylhAs=;
+        b=X+BJI0zt9aO+6o9s+YgtXzt8ewhAEQOCMwPUnZ+U+20AliWoL51jlIVPU8LOpQXI11
+         FVw8cDsgPSEMJQ0vKoBQ0wzLQFJKM7lbV7EEOSeq1Ga6vbCyVr1nekPZ/GMKMiv2Bp7j
+         18nQNBEbQ8MQ1I0UdT3R31eydKT7EcjawOIpg=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:date:message-id:subject:from:to:cc:content-type
+         :content-transfer-encoding;
+        b=ihTc/Vo07hcTwP3B4VHGfOmipE8W1yyx+FK5W2qbvfeg5ul4yjr9403Mgv8Ydb7E9D
+         S5A1K3DznKjRnn8dEUOA9zMExhxGkqoaA5QG4mZoOwgqmk6OvjXx9Wpc3lHqgDK49JxX
+         HrUG5cxgZUXY0HziK2d9OM7kiMDNK/G/1B7YE=
+MIME-Version: 1.0
+Received: by 10.216.87.136 with SMTP id y8mr24792wee.43.1259757719590; Wed, 02 
+	Dec 2009 04:41:59 -0800 (PST)
+Date: Wed, 2 Dec 2009 13:41:59 +0100
+Message-ID: <f96a29930912020441kc761de0w3190579466662cde@mail.gmail.com>
+Subject: .NET <-> Java
+From: Rudolf Kadlec <rudolf.kadlec@gmail.com>
+To: Radim Vansa <radim.vansa@matfyz.cz>
+Cc: v.rovensky@lit.cz
+Content-Type: text/plain; charset=ISO-8859-2
+Content-Transfer-Encoding: quoted-printable
+Old-X-EsetId: 956D1529724864698A6B157C781F28
+X-EsetId: 956D1529724864698A6B157C781C26
+X-EsetScannerBuild: 6167
+
+Ahoj,
+Vladim=EDr bude d=EClat jako diplomku propojen=ED Gavialibu na SL. Jako
+jedin=E1 mo=BEnost pro p=F8ipojen=ED k SL v sou=E8asn=E9 dob=EC vypad=E1 kn=
+ihovna
+LibOpenMetaverse kter=E1 je pr=E1v=EC v .NETu.  Na pond=ECln=ED sch=F9zce j=
+si
+zmi=F2oval n=ECjakou knihovnu pro komunikaci mezi .NETem a Javou. M=E1=B9 k
+tomu n=ECjakou sadu odkaz=F9? V jak=E9m sm=ECru umo=BE=F2ovala knihovna
+komunikovat (NET->Java nebo Java->NET)?
+D=EDk
+R
+
+__________ Informace od ESET Smart Security, verze databaze 4660 (20091204)=
+ __________
+
+Tuto zpravu proveril ESET Smart Security.
+
+http://www.eset.cz
+
+
