@@ -1,0 +1,65 @@
+Return-Path: <rudolf.kadlec@gmail.com>
+X-Original-To: v.rovensky@lit.cz
+Delivered-To: v.rovensky@lit.cz
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.bezdrat.net (Postfix) with ESMTP id 876ECC075
+	for <v.rovensky@lit.cz>; Fri,  4 Dec 2009 22:43:53 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail.bezdrat.net
+Received: from mail.bezdrat.net ([127.0.0.1])
+	by localhost (mail.bezdrat.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GwCNoXO634Sl for <v.rovensky@lit.cz>;
+	Fri,  4 Dec 2009 22:43:51 +0100 (CET)
+Received: from mail-ew0-f220.google.com (mail-ew0-f220.google.com [209.85.219.220])
+	by mail.bezdrat.net (Postfix) with ESMTP id 90DE6C071
+	for <v.rovensky@lit.cz>; Fri,  4 Dec 2009 22:43:51 +0100 (CET)
+Received: by ewy20 with SMTP id 20so1396878ewy.20
+        for <v.rovensky@lit.cz>; Fri, 04 Dec 2009 13:43:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:mime-version:received:date:message-id:subject
+         :from:to:content-type:content-transfer-encoding;
+        bh=Lo1XZ+S7+SevP3wBMkxnICOsrQDgYETxTVg7dwqhl9s=;
+        b=KKrF0Mm6AwEt10/+qChFuyZ1TGGQLE7Srx7vhSh6odm1CKlws4NWrVVlhpjy4K0eCt
+         R/44X6Di8xZLohJ5trsG0KbZnUlKiwCWGd+x5Yj6KibC30GYov2O6ucgQdP61JnHGgnW
+         8KLxCMoOnOqooLR99+i3K5RB5IDV1bWAKBgZ8=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:date:message-id:subject:from:to:content-type
+         :content-transfer-encoding;
+        b=w30b5fzjaIPjFDMadFHqPGdkaZ6Jw8o2DIP8Y3j90SiUWOuDxMqdIDrhgEuqdtDujm
+         HTjZGLIdY+NPZTqJfeOJECApPgWv1MVI024Ajgjj9EihArC59121adJA5vNXza0VQin7
+         U4buOw+il7FqMYW6dPEK6X8D3eRaYKx2JVywY=
+MIME-Version: 1.0
+Received: by 10.216.91.6 with SMTP id g6mr1276480wef.212.1259963030824; Fri, 
+	04 Dec 2009 13:43:50 -0800 (PST)
+Date: Fri, 4 Dec 2009 22:43:50 +0100
+Message-ID: <f96a29930912041343q7c83ac04w89b1aed11cf791f6@mail.gmail.com>
+Subject: =?ISO-8859-1?Q?Nov=FD_instal=E1tor_Pogamutu_3?=
+From: Rudolf Kadlec <rudolf.kadlec@gmail.com>
+To: AMIS Organizer <amis-organizer@artemis.ms.mff.cuni.cz>, Martin Dekar <mdekar@gmail.com>, 
+	v.rovensky@lit.cz
+Content-Type: text/plain; charset=ISO-8859-2
+Content-Transfer-Encoding: quoted-printable
+Old-X-EsetId: 956D1529724864698A6B157C781C20
+Old-X-EsetId: 956D1529724864698A6B157C781C20
+X-EsetScannerBuild: 6167
+X-EsetId: 956D1529724864698A6B157C781C26
+
+http://artemis.ms.mff.cuni.cz/pogamut/tiki-index.php?page=3DDownload
+
+Nov=FD instal=E1tor je ur=E8en=FD pro Unreal Engine 2 Runtime, UT2004 gameb=
+oty
+se ani nesna=BEte instalovat a rovnou je p=F8i instalaci uncheckn=ECte.
+
+Kdy=BE to budete zkou=B9et a vyskytnou se n=ECjak=E9 probl=E9my tak se ozv=
+=ECte.
+R
+
+__________ Informace od ESET Smart Security, verze databaze 4661 (20091204)=
+ __________
+
+Tuto zpravu proveril ESET Smart Security.
+
+http://www.eset.cz
+
+
