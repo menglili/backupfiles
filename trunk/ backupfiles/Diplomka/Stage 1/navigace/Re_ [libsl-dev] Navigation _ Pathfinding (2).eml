@@ -1,0 +1,169 @@
+Return-Path: <karen_palen@yahoo.com>
+X-Original-To: v.rovensky@lit.cz
+Delivered-To: v.rovensky@lit.cz
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.bezdrat.net (Postfix) with ESMTP id 191B0C05E
+	for <v.rovensky@lit.cz>; Mon, 21 Dec 2009 19:33:55 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail.bezdrat.net
+Received: from mail.bezdrat.net ([127.0.0.1])
+	by localhost (mail.bezdrat.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id QN+WkOxRVffZ for <v.rovensky@lit.cz>;
+	Mon, 21 Dec 2009 19:33:52 +0100 (CET)
+Received: from web63107.mail.re1.yahoo.com (web63107.mail.re1.yahoo.com [69.147.97.2])
+	by mail.bezdrat.net (Postfix) with SMTP id 5E9B3C061
+	for <v.rovensky@lit.cz>; Mon, 21 Dec 2009 19:33:52 +0100 (CET)
+Received: (qmail 13002 invoked by uid 60001); 21 Dec 2009 18:33:51 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024; t=1261420431; bh=+tLc7/mj0XzRffstezH+XCpnbtWfd0OoRZr8G+OinoY=; h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type; b=B5y0ZJPxAGh367BD5PsplH6jQVc3VX6h8/wgBNXH0NxUDz5/olPVldQvv/Q0r6ExtQIk/b0wB0zdNn3+kf4ZWkk0fhJYJ+qdDxmt+voglEBN8QC972aS3T594t3q1ATX2yvNVwXMzdnzzReLVKN/nNyuJwZOib1Esl839InYEys=
+DomainKey-Signature:a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=Message-ID:X-YMail-OSG:Received:X-Mailer:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+  b=qeHtG9dZ/s0Al9wAkDZVFXV6WxWLc7ytW4Y7yi9Xh2gqcJT8FjWZnDgOTJIokqJpuyxThFIC9Z2+/vASWxzOy+jMmxFcSOr4nquxmehyqPOATIwIF185df+BhpbSTxi60eGLixaQRVI/mSBwk+GX20PTbXNScfJbFdxjwn7Gtdg=;
+Message-ID: <284314.11488.qm@web63107.mail.re1.yahoo.com>
+X-YMail-OSG: oN6v0BoVM1n_G3nCgajsbtJLrG3ObRwwafLuZxekZU3ugzfXcpcC1SWeK0PHxiGli7aQMkFrhdWWqdmtrIxbVokJJRrlGWWuWpNEvrW7gYGg_K.Gur2hxLzyfkNFjGPDl9MTMwO_THcsYqBnIrnUblpiGwiNQIWUilTCFiZg1bP2Xtx1AAUcJtwDgn0vuhcxcVQ5C2jyv0dF_v2zRwiAXX6WEEv.fqc_33NGgcuzc5yjE8.T26iEIEv3sWQluvvGjFyUahvKpFqnmwkf6D0uNJMxvi9XwtK97aNOVLNT6Z8xHGVW7t1Z6nPWFAGaD8M05lBbMcWUwzp_TlPxOUV2ch9XZKoegSavDagozCYfrgvl1ni0hdWUjE9R_8s2toa1vDSGnKnx0hM.MYNnvWlW.vHvda9ceSl3HqU-
+Received: from [68.3.199.81] by web63107.mail.re1.yahoo.com via HTTP; Mon, 21 Dec 2009 10:33:51 PST
+X-Mailer: YahooMailClassic/9.0.19 YahooMailWebService/0.8.100.260964
+Date: Mon, 21 Dec 2009 10:33:51 -0800 (PST)
+From: Karen Palen <karen_palen@yahoo.com>
+Subject: Re: [libsl-dev] Navigation / Pathfinding
+To: "V.Rovensky" <v.rovensky@lit.cz>
+In-Reply-To: <D900FD1A95D140498757E2FB4F57439C@fine8f794b3772>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+
+I too am no expert at LSL scripting, so I will have to leave the details of question 1 to others. Right now my efforts are directed at adapting the OpenSim test program PCampBot for avatars which requires C#. The reason for doing it at the server level is that you use dramatically fewer resources, especially communications bandwidth.
+
+I would be delighted to hear about other efforts along those lines and have a chance to collaborate.
+
+I have much more practical experience with question 2 though! I would suggest that you simply model the objects as rectangles on the walking plane (or cubes if you are flying). 
+
+The practical results in object avoidance should be minimal while the computing cost and complexity is dramatically less!
+
+The only problems should be things like a huge U shaped wall, say around a building. In this case you probably need to have the capability to add this shape via a ".ini" file of some sort.
+
+Even on OpenSim with its 256M prims though I am finding that a simple cube for a wall/fence etc. is much easier to handle and position correctly that a complex hollow shape.
+
+You will need to accept that every routing algorithm short of a full blown Lee router and a few Terabytes of RAM will have some sort of limitations.
+
+The trick is to find one that works within your constraints well enough to do the job. That is where routing becomes more "art" than "science" :-(
+
+I a situation like a PC board or chip layout the goal is always to cram the most onto the board/chip possible so 90% of the effort and compute resources are always directed at the "last wire" problem. 
+
+For an Avatar walking/flying across a Sim however you don't need that level of efficiency and in fact a certain amount of "wandering" in a complex maze would add realism.
+
+With an OpenSim/SL based system I would expect that a 256 X 256 single byte array would work nicely, although this may exceed some internal limits in LSL.
+
+Karen
+
+--- On Mon, 12/21/09, V.Rovensky <v.rovensky@lit.cz> wrote:
+
+> From: V.Rovensky <v.rovensky@lit.cz>
+> Subject: Re: [libsl-dev] Navigation / Pathfinding
+> To: "Karen Palen" <karen_palen@yahoo.com>
+> Date: Monday, December 21, 2009, 8:13 AM
+> Hi, thank you for the quick response
+> I've got some follow-up questions about what you wrote,
+> some quite dumb as I'm just starting with libSL, so please
+> bear with the newbie :o)
+> 
+> Ad 1) Is there a way to do this programatically? I havent
+> found any means of attaching a LSL script to object in
+> libSL.
+> Ad 2) Ok, what I'm probably going to do is create a graph
+> consisting of locations inbetween which there are no
+> obstacles - to create such a graph I need information about
+> all the primitives in the Sim. I know how to get primitives'
+> locations, but how can I get the shapes (geometry)?
+> 
+> Thanks for your time
+> V.Rovensky
+> 
+> ----- Original Message ----- From: "Karen Palen" <karen_palen@yahoo.com>
+> To: <v.rovensky@lit.cz>
+> Sent: Sunday, December 20, 2009 10:25 PM
+> Subject: Re: [libsl-dev] Navigation / Pathfinding
+> 
+> 
+> > This really boils down to two questions:
+> > 
+> > 1) Moving along a path to a predefined waypoint
+> > 
+> > There is an LSL function llMoveToTarget which does
+> this for you and it is presently implemented in OpenSim.
+> Simply set one llMoveToTarget for each waypoint and your
+> object/avatar will follow that path. There is also an event
+> trigger for "got to target" BTW.
+> > 
+> > 2) Avoiding obstacles in the way
+> > 
+> > This is a MUCH harder problem which has yet to have a
+> general solution! Small obstacles (e.g. a post) can simply
+> be avoided by nudging the avatar randomly. More difficult is
+> a 'U' shaped object which can "trap" the avatar.
+> > 
+> > The general case of a maze is a very compute intensive
+> operation - see http://en.wikipedia.org/wiki/Lee_algorithm (original
+> reference published in 1961!). This is one of the
+> fundamental problems of automated design of electronic
+> circuits.
+> > 
+> > Hope this helps.
+> > 
+> > Karen
+> > --- On Sun, 12/20/09, v.rovensky@lit.cz
+> <v.rovensky@lit.cz>
+> wrote:
+> > 
+> >> From: v.rovensky@lit.cz
+> <v.rovensky@lit.cz>
+> >> Subject: [libsl-dev] Navigation / Pathfinding
+> >> To: libsl-dev@openmv.org
+> >> Date: Sunday, December 20, 2009, 11:57 AM
+> >> Hi everyone
+> >> 
+> >> I went through the documentation and mailing lists
+> trying
+> >> to find the best way
+> >> to make my avatar move between locations and
+> evade
+> >> obstacles, but I still can't
+> >> get it right - could someone please throw some
+> ideas at me
+> >> about how I could
+> >> implement pathfinding / navigation? Say I have two
+> points A
+> >> and B, how could I
+> >> make the avatar get from one to another while
+> avoiding any
+> >> obstacles? The more
+> >> reliable the better.
+> >> Ideally, I'd like to somehow construct a set of
+> "waypoints"
+> >> from from the Sim's
+> >> geometry, create a graph based on accessibility
+> between
+> >> them and perform
+> >> something like A* on it. Could this be done? Is
+> there even
+> >> a way to access the
+> >> Sim's entire geometry (like the primitives' shapes
+> and
+> >> sizes)?
+> >> Any thoughts/hints are welcome
+> >> 
+> >> Thanks for all your time
+> >> V.Rovensky
+> >> 
+> >> 
+> >> _______________________________________________
+> >> libsl-dev mailing list
+> >> libsl-dev@openmv.org
+> >> http://openmv.org/cgi-bin/mailman/listinfo/libsl-dev
+> >> 
+> > 
+> > 
+> > 
+> 
+> 
+
+
+      

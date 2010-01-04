@@ -1,0 +1,107 @@
+Return-Path: <opensim-dev-bounces@lists.berlios.de>
+X-Original-To: v.rovensky@lit.cz
+Delivered-To: v.rovensky@lit.cz
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.bezdrat.net (Postfix) with ESMTP id A7165C08F
+	for <v.rovensky@lit.cz>; Wed, 23 Dec 2009 16:21:53 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail.bezdrat.net
+Received: from mail.bezdrat.net ([127.0.0.1])
+	by localhost (mail.bezdrat.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id wHjvxLT5Yv4F for <v.rovensky@lit.cz>;
+	Wed, 23 Dec 2009 16:21:52 +0100 (CET)
+Received: from mail.berlios.de (bat.berlios.de [195.37.77.135])
+	by mail.bezdrat.net (Postfix) with ESMTP id A408CC06F
+	for <v.rovensky@lit.cz>; Wed, 23 Dec 2009 16:21:52 +0100 (CET)
+Received: from bat.berlios.de (localhost [127.0.0.1])
+	by mail.berlios.de (Postfix) with ESMTP id A97BF1A75A3;
+	Wed, 23 Dec 2009 16:21:37 +0100 (CET)
+X-Original-To: opensim-dev@lists.berlios.de
+Delivered-To: opensim-dev@lists.berlios.de
+Received: from mail-qy0-f191.google.com (mail-qy0-f191.google.com
+	[209.85.221.191])
+	by mail.berlios.de (Postfix) with ESMTP id F419E4F2E0
+	for <opensim-dev@lists.berlios.de>;
+	Wed, 23 Dec 2009 16:21:33 +0100 (CET)
+Received: by qyk29 with SMTP id 29so3105072qyk.32
+	for <opensim-dev@lists.berlios.de>;
+	Wed, 23 Dec 2009 07:21:31 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.229.112.139 with SMTP id w11mr4431374qcp.8.1261581691476; Wed, 
+	23 Dec 2009 07:21:31 -0800 (PST)
+In-Reply-To: <CA35720607DF43B8B3FBB6649772C893@fine8f794b3772>
+References: <CA35720607DF43B8B3FBB6649772C893@fine8f794b3772>
+Date: Wed, 23 Dec 2009 10:21:31 -0500
+Message-ID: <34cc66250912230721l522097ecufdc12dc729c8d9e1@mail.gmail.com>
+From: Teravus Ovares <teravus@gmail.com>
+To: opensim-dev@lists.berlios.de
+Subject: Re: [Opensim-dev] Server based navigation/pathfinding
+X-BeenThere: opensim-dev@lists.berlios.de
+X-Mailman-Version: 2.1.9
+Precedence: list
+Reply-To: opensim-dev@lists.berlios.de
+List-Id: <opensim-dev.lists.berlios.de>
+List-Unsubscribe: <https://lists.berlios.de/mailman/listinfo/opensim-dev>,
+	<mailto:opensim-dev-request@lists.berlios.de?subject=unsubscribe>
+List-Archive: <https://lists.berlios.de/pipermail/opensim-dev>
+List-Post: <mailto:opensim-dev@lists.berlios.de>
+List-Help: <mailto:opensim-dev-request@lists.berlios.de?subject=help>
+List-Subscribe: <https://lists.berlios.de/mailman/listinfo/opensim-dev>,
+	<mailto:opensim-dev-request@lists.berlios.de?subject=subscribe>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Sender: opensim-dev-bounces@lists.berlios.de
+Errors-To: opensim-dev-bounces@lists.berlios.de
+
+Technically it can..      however, be aware that the developers of
+OpenSimulator are currently planning on revamping the object
+structure, and therefore the module API when dealing with objects
+stored on the simulator and there's a chance that if you start now, in
+a month or two, the module will be obsolite because the API changed
+significantly.     I would wait until about 2 weeks after 0.7 is
+tagged..     which should be sometime in January.
+
+Regards
+
+Teravus
+
+2009/12/23 V.Rovensky <v.rovensky@lit.cz>:
+> Hi everyone
+> I'm trying to implement pathfinding and some navigation for my bots (writ=
+ten
+> in libOpenMetaVerse) and it seems=A0it would be more=A0efficient to do th=
+is on
+> the server's side, instead of on the client.=A0Ideally, I'd like to go th=
+rough
+> the region's prims and terrain and create a navigation graph consisting of
+> various waypoints and then apply some standard algorithm like Dijkstra or=
+ A*
+> to find the route for=A0my bot.=A0I was thinking I could create an invisi=
+ble
+> prim for every waypoint and reimplement the autopilot function so it suits
+> my needs a little more.=A0To do this I suppose I need to do the following:
+> =A0=A0=A0=A01) Be able to access all the region's prims, their locations =
+and shapes
+> to create and manage=A0the graph of waypoints
+> =A0=A0=A0=A02) Be able to reimplement the autopilot function, so whenever=
+ the
+> client=A0starts autopilot, my method gets called and sends the client alo=
+ng
+> the computed route.
+>
+> Could this be done via RegionModules? I'm fairly new to OpenSim developme=
+nt,
+> so any tips that could point me the right way would be greatly appreciate=
+d.
+>
+> Thanks for all your time
+> V.Rovensky
+> _______________________________________________
+> Opensim-dev mailing list
+> Opensim-dev@lists.berlios.de
+> https://lists.berlios.de/mailman/listinfo/opensim-dev
+>
+>
+_______________________________________________
+Opensim-dev mailing list
+Opensim-dev@lists.berlios.de
+https://lists.berlios.de/mailman/listinfo/opensim-dev
