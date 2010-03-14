@@ -1,0 +1,1 @@
+java -Xss1024k -Djava.rmi.server.codebase=file:/F:/class/ -Djava.security.policy=./policy RmiServer
