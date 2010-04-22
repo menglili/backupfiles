@@ -1,0 +1,18 @@
+Milestones for the Workflow editor module of the FlowOpt project
+
+1)End of april - complete specification
+
+2)End of may - defined architecture - high level application structure, 
+  communication with ManOpt specified (documented API provided by ManOpt)
+
+3)End of june - application design specified - lower level developer view on
+  the structure of the application - UML diagrams, XSD schema for data model
+  etc. Specified technology to be used (libraries etc.)
+
+4)July ... September - construction, testing (presentation, data access, logic).
+  Order of functions to be implemented may be defined if necessary.
+  
+5)October - finishing touches, documentation
+
+6)November, december - documentation + last minute changes for the project 
+  comitee  
