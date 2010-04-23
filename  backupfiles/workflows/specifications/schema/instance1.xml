@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/F:/Documents%20and%20Settings/Fin/Dokumenty/Versioned/workflows/specifications/schema/flowopt.xsd" id="00000000-0000-0000-0000-000000000000">
+    <taskDefinition id="00000000-0000-0000-0000-000000000000"/>
+    <taskDefinition id="00000000-0000-0000-0000-000000000000"/>
+    <taskDefinition id="00000000-0000-0000-0000-000000000000"/>
+    <activityDefinition id="00000000-0000-0000-0000-000000000000" duration="P1Y2M3DT1H10M0S" cost="50" dueDate="2006-05-04T18:13:51.0Z"
+         earlyCost="0" lateCost="0"/>
+    <activityDefinition id="00000000-0000-0000-0000-000000000000" duration="P1Y2M3DT1H10M0S" cost="50" dueDate="2006-05-04T18:13:51.0Z"
+         earlyCost="0" lateCost="0"/>
+    <activityDefinition id="00000000-0000-0000-0000-000000000000" duration="P1Y2M3DT1H10M0S" cost="50" dueDate="2006-05-04T18:13:51.0Z"
+         earlyCost="0" lateCost="0"/>
+    <decomposition type="AND">
+        <decomposedTask id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </decomposition>
+    <decomposition type="AND">
+        <decomposedTask id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+    </decomposition>
+    <decomposition type="AND">
+        <decomposedTask id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </decomposition>
+    <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </precedence>
+    <precedence>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </precedence>
+    <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+    </precedence>
+    <logical type="=>">
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </logical>
+    <logical type="=>">
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+    </logical>
+    <logical type="=>">
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+    </logical>
+    <synchronization type="SS">
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </synchronization>
+    <synchronization type="SS">
+            <task id="00000000-0000-0000-0000-000000000000"/>
+            <task id="00000000-0000-0000-0000-000000000000"/>
+    </synchronization>
+    <synchronization type="SS">
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+            <activity id="00000000-0000-0000-0000-000000000000"/>
+    </synchronization>
+    <resDep>
+        <activity id="00000000-0000-0000-0000-000000000000"/>
+        <primaryResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+    </resDep>
+    <resDep>
+        <activity id="00000000-0000-0000-0000-000000000000"/>
+        <primaryResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+    </resDep>
+    <resDep>
+        <activity id="00000000-0000-0000-0000-000000000000"/>
+        <primaryResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+        <alternativeResource id="00000000-0000-0000-0000-000000000000"/>
+    </resDep>
+</workflow>
