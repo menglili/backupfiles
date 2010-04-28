@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:noNamespaceSchemaLocation="InputOutputFormat.xsd">
+    <calendarSettings start="3056324497" timeStep="132" />
+    <workflow id="00000000-0000-0000-0000-000000000000" name="name">
+        <taskDefinition id="00000000-0000-0000-0000-000000000000" name="name" isBanned="true" />
+        <taskDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <taskDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="1970-03-21T18:33:31.96" earlyCost="0" lateCost="10" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="1976-10-17T16:29:07.60" earlyCost="0" lateCost="10" isPinned="true" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="1999-11-14T13:03:16.80" earlyCost="0" lateCost="10" isBanned="true" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="2000-04-22T15:09:05.11" earlyCost="0" lateCost="10" />
+        <decomposition type="AND">
+            <rootTask id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+            <activity id="00000000-0000-0000-0000-000000000000" />
+        </decomposition>
+        <decomposition type="XOR" selectedBranch="00000000-0000-0000-0000-000000000000">
+            <rootTask id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </decomposition>
+        <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <activity id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <precedence>
+            <task id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <precedence>
+            <task id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <synchronization type="SS">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <activity id="00000000-0000-0000-0000-000000000000" />
+        </synchronization>
+        <synchronization type="EE">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </synchronization>
+        <synchronization type="SS">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <activity id="00000000-0000-0000-0000-000000000000" />
+        </synchronization>
+        <logical type="=>">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <activity id="00000000-0000-0000-0000-000000000000" />
+        </logical>
+        <logical type="MUTEX">
+            <task id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </logical>
+        <resourceDefinition id="00000000-0000-0000-0000-000000000000" name="name" isBanned="true"  />
+        <resourceDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <resourceAllocation selectedResource="00000000-0000-0000-0000-000000000000">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+        </resourceAllocation>
+    </workflow>
+    <workflow id="00000000-0000-0000-0000-000000000000" name="string">
+        <taskDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <taskDefinition id="00000000-0000-0000-0000-000000000000" name="name" isBanned="false" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="1984-04-16T09:22:43.21" earlyCost="1" lateCost="10" isBanned="false" />
+        <activityDefinition id="00000000-0000-0000-0000-000000000000" name="name" start="10" duration="100" cost="50" dueDate="2000-04-22T15:09:05.11" earlyCost="0" lateCost="10" />
+        <precedence>
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </precedence>
+        <synchronization type="SS">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <task id="00000000-0000-0000-0000-000000000000" />
+        </synchronization>
+        <resourceDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <resourceDefinition id="00000000-0000-0000-0000-000000000000" name="name" />
+        <resourceAllocation selectedResource="00000000-0000-0000-0000-000000000000">
+            <activity id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+            <resource id="00000000-0000-0000-0000-000000000000" />
+        </resourceAllocation>
+    </workflow>
+</workflows>
