@@ -1,18 +1,37 @@
-Milestones for the Workflow editor module of the FlowOpt project
+Harmonogram for the Workflow editor module of the FlowOpt project
 
-1)End of april - complete specification
+1)End of april - milestone - complete specification
 
-2)End of may - defined architecture - high level application structure, 
+2)End of may - milestone - defined architecture - high level application structure, 
   communication with ManOpt specified (documented API provided by ManOpt)
 
-3)End of june - application design specified - lower level developer view on
+3)End of june - milestone - application design specified - lower level developer view on
   the structure of the application - UML diagrams, XSD schema for data model
-  etc. Specified technology to be used (libraries etc.)
+  etc. Specified technology to be used (libraries, SVN, IDE, coding style etc.)
 
-4)July ... September - construction, testing (presentation, data access, logic).
-  Order of functions to be implemented may be defined if necessary.
+4)July ... early October - construction + testing
+  * application core - communitaction with ManOpt database, saving / loading
+     workflows, implementing data structures to preresent the domain model (workflows, 
+     activities, Nested TNA model), basic application framework
+  * graphical framework - APIs to draw workflows in Nested TNA, simple demonstration 
+    prototypes, graphical functionality - drawing arcs, activities, placing activities, 
+    orientation, zooming, hierarchy. 
+    End of August - Milestone - working graphical prototypes ready (simple 
+    demonstration of how workflows will be visualised, no logic behind). 
+  * application logic - engine, workflow manipulation, integration of the above
+    mentioned together into one application   
+  * user interface
+    End of September - Milestone - alpha version completed, ready to be presented to 
+    ManOpt, all core functionality implemented  
+  * rest of the functionality - invoking ManOpt calendar + resource editor, 
+    context guides, finishing touches    
+  * October 15. - Milestone - construction completed, all functional requirements
+    implemented, tested + developer documentation completed, beta version ready
+    to be presented to ManOpt
   
-5)October - finishing touches, documentation
+5)Late october - finishing touches, user documentation, acceptance testing by ManOpt
+  * End of October - milestone - working module completed for ManOpt
 
-6)November, december - documentation + last minute changes for the project 
-  comitee  
+6)November, December - documentation + last minute changes for the project 
+  comitee, installer for the comittee
+  December 15. - Milestone - project completed (successfully :-) 
