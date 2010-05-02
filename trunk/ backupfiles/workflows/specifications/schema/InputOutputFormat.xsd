@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio Developer Edition (Trial) (http://www.liquid-technologies.com)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!--
+    Calendar settings
+    -->
+    <xs:attributeGroup name="calendarSettingsAttributes">
+        <xs:attribute name="start" type="xs:nonNegativeInteger" use="required" />
+        <xs:attribute name="timeStep" type="xs:nonNegativeInteger" use="required" />
+    </xs:attributeGroup>
+    <xs:simpleType name="GUID">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!--
+    Workflow
+    -->
+    <xs:simpleType name="WorkflowId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:simpleType name="WorkflowName">
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+    <xs:simpleType name="Date">
+        <xs:restriction base="xs:nonNegativeInteger" />
+    </xs:simpleType>
+    <xs:simpleType name="CostModificationTimeStep">
+        <xs:restriction base="xs:int" />
+    </xs:simpleType>
+    <xs:simpleType name="CostModifier">
+        <xs:restriction base="xs:float" />
+    </xs:simpleType>
+    <xs:attributeGroup name="workflowAttributes">
+        <xs:attribute name="id" type="WorkflowId" use="required" />
+        <xs:attribute name="name" type="WorkflowName" use="required" />
+        <xs:attribute name="dueDate" type="Date" use="required" />
+        <xs:attribute name="costModificationTimeStep" type="CostModificationTimeStep" />
+        <xs:attribute name="earlyCost" type="CostModifier" use="required" />
+        <xs:attribute name="lateCost" type="CostModifier" use="required" />
+    </xs:attributeGroup>
+    <!--
+    Workflow - Task
+    -->
+    <xs:complexType name="TaskDefinitionReference">
+        <xs:attribute name="id" type="TaskActivityDefinitionId" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="TaskActivityDefinitionId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:simpleType name="TaskName">
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+    <xs:attributeGroup name="taskDefinitionAttributes">
+        <xs:attribute name="id" type="TaskActivityDefinitionId" use="required" />
+        <xs:attribute name="name" type="TaskName" use="required" />
+    </xs:attributeGroup>
+    <!--
+    Workflow - Activity
+    -->
+    <xs:complexType name="ActivityDefinitionReference">
+        <xs:attribute name="id" type="TaskActivityDefinitionId" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="ActivityName">
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+    <xs:attributeGroup name="activityDefinitionAttributes">
+        <xs:attribute name="id" type="TaskActivityDefinitionId" use="required" />
+        <xs:attribute name="name" type="ActivityName" use="required" />
+    </xs:attributeGroup>
+    <!--
+    Workflow - Decomposition
+    -->
+    <xs:simpleType name="DecompositionType">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="AND" />
+                    <xs:enumeration value="XOR" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:attributeGroup name="decompositionAttributes">
+        <xs:attribute name="type" type="DecompositionType" use="required" />
+    </xs:attributeGroup>
+    <xs:complexType name="Decomposition">
+        <xs:sequence>
+            <xs:element name="rootTask" type="TaskDefinitionReference" />
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="activity" type="ActivityDefinitionReference" />
+                <xs:element name="task" type="TaskDefinitionReference" />
+            </xs:choice>
+        </xs:sequence>
+        <xs:attributeGroup ref="decompositionAttributes" />
+    </xs:complexType>
+    <!--
+    Workflow - Abstract constraint
+    -->
+    <xs:complexType name="DirectedArc">
+        <xs:sequence>
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="activity" type="ActivityDefinitionReference" />
+                <xs:element name="task" type="TaskDefinitionReference" />
+            </xs:choice>
+            <xs:choice>
+                <xs:element name="activity" type="ActivityDefinitionReference" />
+                <xs:element name="task" type="TaskDefinitionReference" />
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+    Workflow - Precedence constraint
+    -->
+    <xs:complexType name="PrecedenceArc">
+        <xs:complexContent>
+            <xs:extension base="DirectedArc" />
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+    Workflow - Synchronization
+    -->
+    <xs:simpleType name="SynchronizationType">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="SS" />
+                    <xs:enumeration value="EE" />
+                    <xs:enumeration value="ES" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="SynchronizationArc">
+        <xs:complexContent>
+            <xs:extension base="DirectedArc">
+                <xs:attribute form="unqualified" name="type" type="SynchronizationType" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+    Workflow - Logical constraint
+    -->
+    <xs:simpleType name="LogicalType">
+        <xs:restriction>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="=&gt;" />
+                    <xs:enumeration value="&lt;=&gt;" />
+                    <xs:enumeration value="MUTEX" />
+                    <xs:enumeration value="OR" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="LogicalArc">
+        <xs:complexContent>
+            <xs:extension base="DirectedArc">
+                <xs:attribute name="type" type="LogicalType" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+    Workflow - Resource
+    -->
+    <xs:complexType name="ResourceReference">
+        <xs:attribute name="id" type="ResourceId" use="required" />
+    </xs:complexType>
+    <xs:simpleType name="ResourceId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:simpleType name="ResourceName">
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+    <xs:attributeGroup name="resourceAttributes">
+        <xs:attribute name="id" type="ResourceId" use="required" />
+        <xs:attribute name="name" type="ResourceName" use="required" />
+    </xs:attributeGroup>
+    <!--
+    Workflow - Resource allocation
+    -->
+    <xs:attributeGroup name="resourceAllocationDefinitionAttributes">
+        <xs:attribute name="primaryResource" type="ResourceId" use="optional" />
+    </xs:attributeGroup>
+    <xs:complexType name="ResourceAllocationDefinition">
+        <xs:sequence>
+            <xs:element name="activity" type="ActivityDefinitionReference" />
+            <xs:element maxOccurs="unbounded" name="resource" type="ResourceReference" />
+        </xs:sequence>
+        <xs:attributeGroup ref="resourceAllocationDefinitionAttributes" />
+    </xs:complexType>
+    <!--
+    Order
+    -->
+    <xs:simpleType name="OrderId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:simpleType name="Cost">
+        <xs:restriction base="xs:nonNegativeInteger" />
+    </xs:simpleType>
+    <xs:simpleType name="IsDummy">
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
+    <xs:attributeGroup name="orderAttributes">
+        <xs:attribute name="id" type="OrderId" use="required" />
+        <xs:attribute name="workflowId" type="WorkflowId" use="required" />
+        <xs:attribute name="cost" type="Cost" />
+        <xs:attribute default="false" name="isDummy" type="IsDummy" use="optional" />
+    </xs:attributeGroup>
+    <!--
+    Order - Task
+    -->
+    <xs:simpleType name="TaskActivityInstanceId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:simpleType name="IsBanned">
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
+    <xs:simpleType name="IsExecuted">
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
+    <xs:attributeGroup name="taskInstanceAttributes">
+        <xs:attribute name="id" type="TaskActivityInstanceId" use="required" />
+        <xs:attribute name="workflowTaskId" type="TaskActivityDefinitionId" use="required" />
+        <xs:attribute default="false" name="isBanned" type="IsBanned" use="optional" />
+        <xs:attribute default="false" name="isExecuted" type="IsExecuted" use="optional" />
+    </xs:attributeGroup>
+    <!--
+    Order - Activity
+    -->
+    <xs:simpleType name="Start">
+        <xs:restriction base="Date" />
+    </xs:simpleType>
+    <xs:simpleType name="Duration">
+        <xs:restriction base="xs:nonNegativeInteger" />
+    </xs:simpleType>
+    <xs:simpleType name="IsPinned">
+        <xs:restriction base="xs:boolean" />
+    </xs:simpleType>
+    <xs:attributeGroup name="activityInstanceAttributes">
+        <xs:attribute name="id" type="TaskActivityInstanceId" use="required" />
+        <xs:attribute name="workflowActivityId" type="TaskActivityDefinitionId" use="required" />
+        <xs:attribute name="duration" type="Duration" />
+        <xs:attribute default="false" name="isPinned" type="IsPinned" use="optional" />
+        <xs:attribute default="false" name="isBanned" type="IsBanned" use="optional" />
+    </xs:attributeGroup>
+    <xs:complexType name="ActivityExecution">
+        <xs:attribute default="true" name="isExecuted" type="IsExecuted" use="optional" />
+        <xs:attribute name="start" type="Start" use="required" />
+    </xs:complexType>
+    <xs:complexType name="ActivityInstance">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="execution" type="ActivityExecution" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="resourceAllocation" type="ResourceReference" />
+        </xs:sequence>
+        <xs:attributeGroup ref="activityInstanceAttributes" />
+    </xs:complexType>
+    <!--
+    Order - Banned Resource
+    -->
+    <xs:simpleType name="BannedResourceId">
+        <xs:restriction base="GUID" />
+    </xs:simpleType>
+    <xs:attributeGroup name="bannedResourceAttributes">
+        <xs:attribute name="id" type="BannedResourceId" use="required" />
+        <xs:attribute name="resourceId" type="ResourceId" use="required" />
+        <xs:attribute name="isBanned" type="IsBanned" use="required" />
+    </xs:attributeGroup>
+    <!--
+    Project
+    -->
+    <xs:element name="project">
+        <xs:complexType>
+            <xs:sequence>
+                <!--
+                Calendar
+                -->
+                <xs:element name="calendarSettings">
+                    <xs:complexType>
+                        <xs:attributeGroup ref="calendarSettingsAttributes" />
+                    </xs:complexType>
+                </xs:element>
+                <!--
+                Workflow
+                -->
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="workflow">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="taskDefinition">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="taskDefinitionAttributes" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="activityDefinition">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="activityDefinitionAttributes" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="decomposition" type="Decomposition" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="precedence" type="PrecedenceArc" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="synchronization" type="SynchronizationArc" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="logical" type="LogicalArc" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="resourceDefinition">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="resourceAttributes" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="resourceAllocationDefinition" type="ResourceAllocationDefinition" />
+                        </xs:sequence>
+                        <xs:attributeGroup ref="workflowAttributes" />
+                    </xs:complexType>
+                </xs:element>
+                <!--
+                Order
+                -->
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="order">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="taskInstance">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="taskInstanceAttributes" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="activityInstance" type="ActivityInstance" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="bannedResource">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="bannedResourceAttributes" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attributeGroup ref="orderAttributes" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
