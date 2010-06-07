@@ -1,0 +1,53 @@
+This topic should serve for discussions concerning the FlowOpt<->MAKE integration. Currently, the
+workflow editor module and the schedule visualiser module are ready for construction, therefore APIs for
+communication between those modules and MAKE need to be established. 
+Here are some key points to consider:
+
+Initialization
+API for creating / closing the connection to MAKE infrastructure + any technical info concerning
+the plug-in integration. What do we need to do in order to make other APIs accessible to our code.
+
+Data manipulation
+FlowOpt uses a data model somewhat similar (although simpler) to that of MAKE. We plan on using the same 
+activities and resources as MAKE (possibly only subset of their attributes though), however workflows
+will have to be separated, since their semantics is different in FlowOpt (different workflow model is enforced). 
+Both the workflow editor module and the schedule visualiser module have defined XML schemas for files to be used
+for communication with MAKE. Hence the need for following API:
+ - save a workflow or a schedule (in form of XML file with defined schema) to the DB
+ - load a workflow or a schedule (in form of XML file with defined schema) from the DB  
+ - list all defined activities in the DB (name + ID)
+ - list all defined resources in the DB (name + ID)
+ - load a specific activity or resource from the DB
+ - list all defined workflows / schedules (name + ID)
+
+I will also create a topic specifically for discussions on the data model, as it is a key concern for
+the integration. Up-to date XSD schemas will be posted there. 
+
+Invoking parts of MAKE
+For sake of user's convenience and consistency, FlowOpt should be able to invoke certain parts of MAKE:
+ - invoke MAKE's activity editor
+ - invoke MAKE's resource editor
+ - invoke MAKE's calendar on a specified date. The calendar should allow the user to pick a date
+    and return this date to the coder.
+    Note: we assume that MAKE can do a conversion between abstract time units and real time based on 
+    provided data (time start, time step...). Is that right? 
+
+Graphics
+No API is strictly necessary for graphics - it depends on MAKE requirements concerning how tight
+should the integration be. Our preferred method would be that FlowOpt opens in its own window
+and handles graphics in its own way (possibly using different technologies for rendering than MAKE does, like
+WPF). In this case, no API would be required.
+In case the integration needs to be tighter (i.e. FlowOpt modules whould open within MAKE window), we will
+at least need API to gain reference to this window as well as means to render graphics into this window. Also, 
+any tools used by MAKE for rendering of workflows / schedules could potentially be reused in FlowOpt.
+For sake of visual consistency, any provided resources (fonts, bitmaps, ...) would be welcome, however they are
+also not necessary.
+Key point here is to state what APIs will we be required to use (because of for ex. consistency) as opposed
+to what APIs will we be allowed to use (for convenience). This will allow us to start designing our modules 
+architecture.  
+
+Miscellaneus questions   
+ - Installation - how much space does MAKE require? Are there any other SW requirements apart from
+    MS SQL server? When can the installation be done (we would prefer this to be ASAP)?
+ - Do you have any requirements concerning development like use of a specific SDLC, code conventions, 
+    testing, versioning system etc. ?
