@@ -1,9 +1,0 @@
-This topic should serve for discussions concerning the data model used by FlowOpt. Its main purpose is to 
-help create an API that will allow us to save and load our data to and from the ManOpt database. The model
-we have in mind is rather similar to the MAKE data model, however it is not exactly the same, therefore some
-conversions may be needed. We have prepared XSD schemas for files that should be used to communicate our data to and from
-the MAKE database. Up-to-date version of this schema may be found here. There are currently two schemas - 
-one for the workflow editor, one for the schedule visualiser. The former is merely a subset of the latter.
-
-Semantics of the FlowOpt data model - workflows
-For the workflow editor module, the key data object will be a workflow. A workflow has a defined ID and name.
