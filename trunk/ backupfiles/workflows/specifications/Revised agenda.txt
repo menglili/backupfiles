@@ -1,0 +1,71 @@
+Revised agenda
+1) Get Make installed + get installation package if possible. Get basic training database with sample data.
+Get user documentation for Make application. Any HW and SW requirements should be provided in advance.
+Duration: 1 hour.
+
+2) Familiarize myself with the plugin architecture of Make - how to initialize the plugin and establish connection to 
+Make infrastructure. Develop a simple demonstration plugin with minimal functionality that only initiates the connection
+to Make.
+Duration: 45 mins
+
+3) Familiarize myself with the API for Make database access. Extend the sample plugin with simple methods
+demonstrating loading and displaying (in simple textual form, no graphics yet) activities , activity groups and
+resources. The plugin should print a list of all defined resources and activities (grouped by their 
+respective groups) and allow the user to print details for a single selected activity / resource. 
+Duration: 1-2 hours.
+
+4) Familiarize myself with the graphical API provided by Make. This will be the core part of the agenda and will
+likely be the most time consuming. It involves the following:
+  * Initializing the graphical engine of the plugin. Create a simple plugin that will open its own window (possibly
+    a tab within the Make window) and allow the user to open/close new windows and communicate with them. Any boilerplate
+    code like resource allocation / disposal should be explained here.
+    Duration: 45 mins
+  * Using components - how to insert standard Windows components (button, label, listbox...) into the 
+    graphical plugin. Extend the plugin from the previous point so that it contains the skeleton of the
+    GUI that the application should use (see SRS). No functionality, just place the components.
+    Duration: 30 minutes
+  * Familiarize myself with event handling on those components - how to handle mouse clicking, double clicking, 
+    dragging, keyborad input. Extend the plugin from previous point by adding the activity list. This means add a
+    component equivalent to listbox, load all defined activities in it as in point 3), handle selection on this
+    list - when an activity is selected, print its details into another component (textbox).
+    Duration: 1 hour.
+  * Custom rendering - How to place a canvas within the window onto which custom rendering can be done (the main 
+    drawing area of the editor). How to render some basic objects that the Make API propvides. Extend the sample
+    plugin from previous point by adding the canvas (drawing area). Let the user drag activities from the activity
+    list anywhere on the canvas. Let the user select activities placed onto the canvas by clicking on them. 
+    Selected activity can be removed from canvas by hitting the delete key.
+    Duration: 1-2 hours.
+  * Introduce scrollbars - into the sample plugin from previous point, add scrollbars - both horizontal and vertical
+    Duration: 15 mins.
+  * Activity manipulation - let the user resize activites, change font, color etc - whatever the Make API allows in
+    this manner.
+    Duration: 30 mins
+  * Arc rendering - let the user arbitrarily connect activities on the canvas with arcs and remove arcs placed onto the 
+    canvas, manipulate arcs (change thickness, color, style, breakpoints, end points).
+    Duration: 1 hour
+  * Task rendering - familiarize myself with any means that the Make API provides for rendering tasks, as defined
+    in the SRS. Develop a sample plugin that would allow the user to place a single task somewhere on the screen and
+    assing it a nest of activities, i.e. drop activities onto this task, thus creating a very simple workflow consisting of
+    one task with a nest of activities (let the user specify the type of nest - serial, parallel or alternative).
+    Allow the user to move the task, resize it, change color, border, name etc - whatever the Make API allows.
+    This plugin should be the result of cooperation - a prototype for the end application.
+    Duration: 1-2 hours. 
+
+5) Finalize the API for data exchange between Make and Workflow editor of FlowOpt. This includes saving and
+loading of "our" workflows to/from the Make database. Decide upon the method we will use (we propose specified
+XML files). Develop a simple plugin that will allow the user to list all the defined FlowOpt workflows, save a
+new workflow into the database and load workflow from the database, either into the currently active window or into
+a new one. Use the prototype plugin from point 4) for creating simple workflows.
+Duration: 45 mins
+
+6) Familiarize myself with API for invoking other parts of Make - create a simple plugin that will open Make's
+activity editor on a specified activity, resource editor on specified resource. Upon closing the activity (resource) 
+editor, data in the plugin should be updated to reflect changes made in the activity (resource) editor. 
+Duration: 20 mins
+
+7) Familiarize myself with Make API for saving/loading application settings. Extend the protoype plugin with this
+functionality - let the user persist some setting (for ex. activity font) into the database and load it upon loading
+the plugin.
+
+
+) Get the API exercised above together with the Make installation. Get the documentation of this API in written form.
