@@ -1,0 +1,24 @@
+fmod INT-LIST is
+  protecting LIST{Int} * (sort NeList{Int} to NeIntList,
+  sort List{Int} to IntList) .
+endfm
+
+fmod IINT-LIST is 
+  protecting INT-LIST .
+  protecting INT .
+  protecting NAT .   
+  
+  sort IntWithExceptions .
+  subsorts Int < IntWithExceptions .
+  
+  op _[_] : NeIntList Nat -> IntWithExceptions .  
+  op IndexOutOfRangeException : -> IntWithExceptions [ctor] .
+  
+  var list : NeIntList .
+  var index : Nat .
+  
+  ceq list[index] = head(list) if index == 1 .
+  ceq list[index] = tail(list)[index - 1] if index > 1 .
+  eq nil[index] = IndexOutOfRangeException  .  
+  
+endfm
