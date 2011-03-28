@@ -1,0 +1,19 @@
+fmod DataTypes is
+	protecting INT .
+	protecting NAT .
+	protecting LIST{Int} .
+	protecting STRING .
+	
+	sorts Address Value StackElement Input Output ProgramCounter Label .
+	subsort Nat < Address .
+	subsort Int < Value .
+	subsort Address < StackElement .
+	subsort Value < StackElement .
+	subsort List{Int} < Input .
+	subsort List{Int} < Output .
+	subsort Nat < ProgramCounter .
+	subsort String < Label .
+	
+	op NullPointerError(_) : Address -> Value [ctor] . 	--- Error thrown when accessing an address that wasn't assigned to
+	op StackEmptyError : -> StackElement [ctor] . 		--- Error thrown when trying to pop from an empty stack
+endfm
