@@ -56,12 +56,12 @@ fmod Computer is
 	eq RunProgram(code,input) = GetOutput(AllSteps(LoadCode(code,input))) .		
 	eq Step(st) = IncrementCounter(DoInstruction(st,GetCurrentInstruction(st))) .		
 	
-	eq DoInstruction(st,TA address) = state(GetStack(st),address,GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
-	eq DoInstruction(st,TC value) =  state(GetStack(st),value,GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
-	eq DoInstruction(st,DR) = state(Pop(GetStack(st)),GetMemory(st)[Top(GetStack(st))],GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
+	eq DoInstruction(st,TA address) = state(Push(GetStack(st),address),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
+	eq DoInstruction(st,TC value) =  state(Push(GetStack(st),value),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
+	eq DoInstruction(st,DR) = state(Push(Pop(GetStack(st)),GetMemory(st)[Top(GetStack(st))]),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
 	eq DoInstruction(st,ST) = state(Pop(Pop(GetStack(st))),GetInput(st),GetOutput(st),GetMemory(st)[Top(Pop(GetStack(st))),Top(GetStack(st))],GetCode(st),GetProgramCounter(st)) .
-	eq DoInstruction(st,AD) = state(Pop(Pop(GetStack(st))),Top(GetStack(st)) + Top(Pop(GetStack(st))),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
-	eq DoInstruction(st,RD) = state(GetStack(st),head(GetInput(st)),tail(GetInput(st)),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
+	eq DoInstruction(st,AD) = state(Push(Pop(Pop(GetStack(st))),Top(GetStack(st)) + Top(Pop(GetStack(st)))),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
+	eq DoInstruction(st,RD) = state(Push(GetStack(st),head(GetInput(st))),tail(GetInput(st)),GetOutput(st),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
 	eq DoInstruction(st,WR) = state(Pop(GetStack(st)),GetInput(st),append(GetOutput(st),Top(GetStack(st))),GetMemory(st),GetCode(st),GetProgramCounter(st)) .
 	eq DoInstruction(st,LAB lab) = st .
 	eq DoInstruction(st,JU lab) = state(GetStack(st),GetInput(st),GetOutput(st),GetMemory(st),GetCode(st),FindLabel(GetCode(st),lab)) .
@@ -70,4 +70,4 @@ fmod Computer is
 	
 endfm
 
-reduce in Computer : RunProgram(RD ; RD ; AD ; WR,-5 -4) .
+---reduce in Computer : RunProgram(RD ; RD ; AD ; WR,-5 -4) .

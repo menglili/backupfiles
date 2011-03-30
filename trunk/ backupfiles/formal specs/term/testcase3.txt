@@ -1,0 +1,51 @@
+//A program that accepts a single natural number n and returns 1 if it is even, 0 if it is odd
+//Required: n>=0
+//Alg:
+//	read(n)
+//	isEven = 1
+//	repeat until n == 0
+//		n--;
+//		isEven = 1 - isEven; 
+//	write(isEven)
+
+RD					//Read n, use address 1 for isEven (set to 1)					
+TA 1
+TC 1
+ST
+
+LAB "step1"			//Decrement n
+TC -1
+AD
+TA 1				//isEven = 0
+TC 0
+ST
+
+JNZ "step2"			//If n==0, jump to the results printing section
+JU "result"
+
+LAB "step2"			//Decrement n
+TC -1
+AD
+TA 1				//isEven = 1
+TC 1
+ST
+JNZ "step1"			//If n != 0 repeat step 1
+
+LAB "result"		//If value at address 1 != 0 skip to even, else skip to odd
+TA 1
+DR
+JNZ "even"
+JU "odd"
+
+LAB "even"			//Write 1, skip to the end
+TC 1 
+WR
+JU "end"
+
+LAB "odd"			//Write 0
+TC 0
+WR
+LAB "end"
+
+Full program:
+RD ; TA 1 ; TC 1 ; ST ; LAB "step1" ; TC -1 ; AD ; TA 1 ; TC 0 ; ST ; JNZ "step2" ; JU "result" ; LAB "step2" ; TC -1 ; AD ; TA 1 ; TC 1 ; ST ; JNZ "step1" ; LAB "result" ; TA 1 ; DR ; JNZ "even" ; JU "odd" ; LAB "even" ; TC 1 ; WR ; JU "end" ; LAB "odd" ; TC 0 ; WR ; LAB "end"

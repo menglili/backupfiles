@@ -4,7 +4,7 @@ fmod Stack is
 	sort Stack . 
 	
   	op empty : -> Stack [ctor] .
-  	op _,_ : Stack StackElement -> Stack [ctor] .  
+  	op Push(_,_) : Stack StackElement -> Stack [ctor] .  
   	op Pop(_) : Stack -> Stack [ctor] .
   	op Top(_) : Stack -> StackElement .
   	op IsEmpty(_) : Stack -> Bool .
@@ -13,10 +13,10 @@ fmod Stack is
   	var stack : Stack .
     var element : StackElement .
   
-  	eq Pop(stack,element) = stack .
-  	eq Top(stack,element) = element .
+  	eq Pop(Push(stack,element)) = stack .
+  	eq Top(Push(stack,element)) = element .
   	eq IsEmpty(empty) = true .
-  	eq IsEmpty(stack,element) = false .
+  	eq IsEmpty(Push(stack,element)) = false .
   	eq Top(empty) = StackEmptyError .
   	eq Pop(empty) = StackEmptyError .
 

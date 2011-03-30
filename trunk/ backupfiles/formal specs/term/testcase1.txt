@@ -1,0 +1,36 @@
+//A program that accepts an input of type: n v1 v2 v3 v4 v5 v6 .... vn and writes out the sum of all vi over n
+//Required: n >= 1
+/*
+*	Basically just implements the following:
+*	int sum = 0;
+*	for i = 1 to n do
+*		sum += read()
+*/
+
+
+TC 0 				//Start with 0 for the sum                
+
+TA 1				//We will use memory address 1 for the for counter
+RD					//Reads the n
+
+LAB "start"			//Start of the for cycle
+ST					//First, store the new value of the counter (1)
+
+RD					// The code within the for cycle - here
+AD					// just read another value and add it to the running sum
+
+TA 1				//Prepare the address for the ST instruction (see 1)
+
+TA 1				//Load the counter value
+DR
+
+TC -1				//Decrement the counter value
+AD
+
+JNZ "start"			//If counter > 1 jump to the start of the for cycle
+ST					//Just write the value of the counter one last time to get rid of it
+
+WR					//Write out the result
+
+//Full program:
+TC 0 ; TA 1 ; RD ; LAB "start" ; ST ; RD ; AD ; TA 1 ; TA 1 ; DR ; TC -1 ; AD ; JNZ "start" ; ST ; WR 
