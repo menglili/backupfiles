@@ -1,27 +1,21 @@
-//Maximum length of all the non-constant length arrays, make sure it is enough for the concrete railway instance
-#define MAX_ARRAY_LENGTH 5
-
 //Maximum possible number of tracks
-#define MAX_TRACK_COUNT 25
+#define TRACK_COUNT 4
 
-//How many trains can fit in a railway station
-#define STATION_TRAIN_CAPACITY 10
+//Maximum length of a train's path
+#define MAX_PATH_LENGTH 3
 
-//How many trains can fit in a track in one direction - shouldn't be limitng
-#define TRACK_CAPACITY 10
+//Number of stations in the model.
+#define STATION_COUNT 5
+
+//Number of trains in the model.
+#define TRAIN_COUNT 2
 
 //Represents the path of a train - a sequence of stops (stations) that the train
 //keeps going through (from index 0 to end and back)
 typedef TrainPath {
 	byte pathLength = 0;
-	byte path[MAX_ARRAY_LENGTH];
+	byte path[MAX_PATH_LENGTH];
 };
-
-//Adds another station stop to given trainPath
-inline AddStop(trainPath, stop) {
-	paths[trainPath].path[paths[trainPath].pathLength] = stop;
-	paths[trainPath].pathLength++;
-}
 
 //Represents one track - contains the end stations, number of wainting people on
 //both ends, a flag indicating whether a train is coming from either direction and
@@ -36,70 +30,56 @@ typedef Track {
 	bool incoming2 = false;
 
 	//this channel holds train process ids - only serves to ensure fifo order of arriving trains
-	chan track = [TRACK_CAPACITY] of {byte};	
-};
+	chan track12 = [TRAIN_COUNT] of {byte};	
+		chan track21 = [TRAIN_COUNT] of {byte};	
+	};
 
 //Holds all the tracks in the model
-Track tracks[MAX_TRACK_COUNT];
-byte trackCount = 0;
-
-//A mapping used to conveniently get the track between two stations - can be indexed as
-//a 2d array ~trackMap[a,b] = trackMap[b,a] = track between a and b. See the inline GetTrackIndex
-//Note: trackMap[a,b] == -1 <=> there is no track between a and b
-byte trackMap[MAX_TRACK_COUNT];
-
-//-------------------------------------------------------------------------------
-//!!! You can edit the following 2 constants and method to change the configuration of the railway network
-//-------------------------------------------------------------------------------
-
-//Number of stations in the model. Shouldn't be more than 15.
-#define STATION_COUNT 5
-
-//Number of trains in the model.
-#define TRAIN_COUNT 2
-
-inline CreateStationRecords() {
-	AddTrack(0,2);
-	AddTrack(1,2);
-	AddTrack(2,3);
-	AddTrack(2,4);
-
-	AddStop(0,0);
-	AddStop(0,2);
-	AddStop(0,4);
-
-	AddStop(1,1);
-	AddStop(1,2);
-	AddStop(1,3);
-}
-
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
-
-//Adds a new track between two stations
-//CAN BE USED TO MODIFY THE MODEL
-inline AddTrack(st1, st2) {
-	tracks[trackCount].station1 = st1;
-	tracks[trackCount].station2 = st2;
-
-	trackMap[st1 * STATION_COUNT + st2] = trackCount;
-	trackMap[st2 * STATION_COUNT + st1] = trackCount;
-
-	trackCount = trackCount + 1;
-}
-
-//Utility method that takes two station ids and finds the index of the track between them,
-//stores it into index. This index can be used in the tracks array. Note that if tracks[i] == -1,
-//it means there is no track between the two stations.
-inline GetTrackIndex(from, to, index) {
-	index = from * STATION_COUNT + to;
-}
+Track tracks[TRACK_COUNT];
 
 //Stores all the train paths
 TrainPath paths[TRAIN_COUNT];
 
-inline GetNextStop(me, currentStop, goingForward, nextStop, index) {
-	
+inline AddStop(train, stop) {
+	paths[train].path[paths[train].pathLength] = stop;
+	paths[train].pathLength++;
+}
+
+inline CreateStationRecords() {
+	d_step {
+		CreateTrack(0, 0, 2);
+		CreateTrack(1, 1, 2);
+		CreateTrack(2, 2, 3);
+		CreateTrack(3, 2, 4);
+
+		AddStop(0,0);	AddStop(0,2);	AddStop(0,4);
+		AddStop(1,1);	AddStop(1,2);	AddStop(1,3);
+	}
+}
+
+inline CreateTrack(index, st1, st2) {
+	if
+		:: st1 <= st2 -> tracks[index].station1 = st1; tracks[index].station2 = st2;
+		:: else -> tracks[index].station1 = st2; tracks[index].station2 = st1;
+	fi;
+}
+
+//Utility method that takes two station ids and finds the index of the track between them,
+//stores it into index. Precondition: from <= to 
+inline GetTrackIndex(from, to, index, i) {
+	for(i: 0..TRACK_COUNT-1) {
+		if
+			::tracks[i].station1 == from && tracks[i].station2 == to ->
+				index = i;
+			::tracks[i].station2 == from && tracks[i].station1 == to ->
+				index = i;
+			::else -> skip;
+		fi;
+	}
+}
+
+inline GetNextStop(me, currentStop, goingForward, nextStop, index, i) {
+	d_step{
 	if
 		::goingForward && currentStop < paths[me].pathLength-1 -> nextStop = currentStop +1;
 		::goingForward && currentStop >= paths[me].pathLength-1 -> nextStop = currentStop -1; 
@@ -107,23 +87,40 @@ inline GetNextStop(me, currentStop, goingForward, nextStop, index) {
 		::!goingForward && currentStop <= 0 -> nextStop = currentStop + 1;
 		::else -> assert(false);
 	fi;
-	GetTrackIndex(paths[me].path[currentStop], paths[me].path[nextStop], index);
+	GetTrackIndex(paths[me].path[currentStop], paths[me].path[nextStop], index, i);
+	}
 }
 
 inline MoveTrain(me, currentStop, nextStop, index) {	
-	atomic {
-		tracks[trackMap[index]].track ? eval(me);
+	if
+		::tracks[index].station1 == paths[me].path[currentStop] -> tracks[index].track12 ? eval(me);
+		::tracks[index].station2 == paths[me].path[currentStop] -> tracks[index].track21 ? eval(me);
+	fi;	
+	
+	d_step {
 		goingForward = (nextStop > currentStop);
 		currentStop = nextStop;
 	}
 }	
 
-inline LoadPassangers(me, currentStop, nextStop, index, passangerCount) {
+inline LoadPassangers(me, currentStop, index) {
+	d_step{
 	if
-		::tracks[trackMap[index]].station1 == paths[me].path[currentStop] ->
-			::tracks[trackMap[index]].waiting1 = 0;
-		::tracks[trackMap[index]].station2 == paths[me].path[currentStop] ->
-			::tracks[trackMap[index]].waiting2 = 0;
+		::tracks[index].station1 == paths[me].path[currentStop] ->
+			 tracks[index].waiting1 = false;
+		::tracks[index].station2 == paths[me].path[currentStop] ->
+			 tracks[index].waiting2 = false;
+		::else -> assert(false);
+	fi
+	}
+}
+
+inline WaitForFreeTrack(me, currentStop, index) {
+	if
+		::tracks[index].station1 == paths[me].path[currentStop] ->
+			atomic { if ::empty(tracks[index].track21) -> tracks[index].track12 ! me; fi; }
+		::tracks[index].station2 == paths[me].path[currentStop] ->
+			atomic { if ::empty(tracks[index].track12) -> tracks[index].track21 ! me; fi; }
 		::else -> assert(false);
 	fi
 }
@@ -133,21 +130,20 @@ inline LoadPassangers(me, currentStop, nextStop, index, passangerCount) {
 proctype Train(byte me) {
 	byte currentStop = 0;
 	bool onTrack = false;
-	bool goingForward = true;
-	byte passangerCount = 0;	
+	bool goingForward = true;	
 	byte nextStop;
 	byte index;
+	byte i;
 	
 	do
 		::onTrack->
-			GetNextStop(me, currentStop, goingForward, nextStop, index);
+			GetNextStop(me, currentStop, goingForward, nextStop, index, i);
 			MoveTrain(me, currentStop, nextStop, index);
 			onTrack = false;
-			passangerCount = 0;
 		::else ->
-			GetNextStop(me, currentStop, goingForward, nextStop, index);		
-			LoadPassangers(me, currentStop, nextStop, index, passangerCount);
-			tracks[trackMap[index]].track ! me;
+			GetNextStop(me, currentStop, goingForward, nextStop, index, i);
+			WaitForFreeTrack(me, currentStop, index);		
+			LoadPassangers(me, currentStop, index);
 			onTrack = true;
 	od
 }
@@ -156,14 +152,11 @@ proctype PassangerSpawner() {
 	byte i;
 
 	do
-		::skip -> 
-			for(i: 0..trackCount-1) {
-				if
-					::skip -> tracks[i].waiting1 = true;
-					::skip -> tracks[i].waiting2 = true;
-					::skip -> skip;
-				fi;
-			}
+		::skip -> 	d_step {
+			for(i: 0..TRACK_COUNT-1) {
+				tracks[i].waiting1 = true;
+				tracks[i].waiting2 = true;
+			} }
 	od
 }
 
@@ -176,5 +169,17 @@ init {
 		}
 
 		run PassangerSpawner();
+		run NoCrashMonitor();
 	}
+}
+
+//MODEL CHECKING BELOW
+
+ltl noWaitForever {
+	[] ((tracks[0].waiting1 == true) -> <> (tracks[0].waiting1 == false)) &&
+	[] ((tracks[0].waiting2 == true) -> <> (tracks[0].waiting2 == false)) 
+}
+
+proctype NoCrashMonitor() {
+	assert(empty(tracks[0].track12) || empty(tracks[0].track21));
 }
