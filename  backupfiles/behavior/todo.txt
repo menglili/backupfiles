@@ -4,4 +4,4 @@
 * trains on one track going in opposing directions take turns
 * check that all trains are alive w. progress (count how many trains moved, when == trainCount then progress)
 * no train capacities - reasoning: statistics, average case, not worst case...
-* time slices
+* time slices -> progress na zvyseni casu, verifikovat co se deje v slicech (vlak ceka a ceka)
