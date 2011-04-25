@@ -1,8 +1,0 @@
-* static passanger with routes, check that they make it through (accessibility)
-* one pass waiting (PassangerSpawner)
-* station capacities
-* trains on one track going in opposing directions take turns
-* check that all trains are alive w. progress (count how many trains moved, when == trainCount then progress)
-* no train capacities - reasoning: statistics, average case, not worst case...
-* time slices -> progress na zvyseni casu, verifikovat co se deje v slicech (vlak ceka a ceka), passenger spawner ve slicech?
-* accessibility vlnou vsude !
