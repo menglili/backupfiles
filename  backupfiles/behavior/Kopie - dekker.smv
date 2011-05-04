@@ -1,0 +1,68 @@
+MODULE proc(me, turn, p, q)
+VAR
+  state : {idle, entering, waiting, critical, exiting};
+
+DEFINE
+  nextInTurn := state = waiting & turn = me;
+  nooneWaiting := !p.nextInTurn & !q.nextInTurn;
+  notEntering := state != entering & state != critical;
+  nooneEntering := p.notEntering & q.notEntering; 
+  criticalSectionFree := nooneEntering & nooneWaiting;  
+  
+  inCritical := 
+  case 
+    state = critical : 1;
+    state != critical : 0;
+  esac;
+  
+  nextTurn :=
+  case
+    turn = 1 : 2;
+    turn = 2 : 3;
+    turn = 3 : 1;
+  esac;
+
+ASSIGN
+  init(state) := idle;
+  
+  next(state) :=
+  case
+    state = idle : {idle, entering};
+    state = entering & criticalSectionFree : critical;
+    state = entering & turn != me : waiting;
+    state = waiting & (turn = me | (p.state = idle & q.state = idle)) : entering;
+    state = critical : exiting;
+    state = exiting : idle;
+    TRUE : state;
+  esac;
+  
+  next(turn) :=
+  case    
+    state = critical : nextTurn;
+    TRUE : turn;
+  esac;
+
+FAIRNESS running
+  
+MODULE main()
+VAR
+  turn : {1, 2, 3};
+   
+  p1 : process proc(1, turn, p2, p3);
+  p2 : process proc(2, turn, p1, p3);
+  p3 : process proc(3, turn, p1, p2); 
+
+DEFINE
+  totalInCritical := p1.inCritical + p2.inCritical + p3.inCritical; 
+  
+ASSIGN
+  init(turn) := 1;
+
+SPEC AG (totalInCritical <= 1)
+
+SPEC AG (p1.state = entering -> AF p1.state = critical)
+SPEC AG (p2.state = entering -> AF p2.state = critical)
+SPEC AG (p3.state = entering -> AF p3.state = critical)
+
+
+
