@@ -1,1 +1,0 @@
-java -Xss1024k -Djava.security.policy=./policy Main

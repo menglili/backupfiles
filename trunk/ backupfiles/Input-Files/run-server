@@ -1,2 +1,0 @@
-export CLASSPATH=.
-java -Xss1024k -Djava.rmi.server.codebase=file:`pwd`/ -Djava.security.policy=./policy RmiServer
