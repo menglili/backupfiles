@@ -1,3 +1,0 @@
-export CLASSPATH=.
-javac *.java
-rmic ExampleImpl
